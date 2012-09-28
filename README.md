@@ -42,3 +42,12 @@
 <p>El manejo de las vistas de calendario se hace por medio de una librería de jQuery
 Para conectar esa librería con los datos de la base de datos se hace por medio de JSON</p>
 <p>Para el manejo de comentarios se utiliza el recurso Disqus</p>
+
+<p>EQUIPO: "Pekes y Tote"</p>
+<p>INTEGRANTES DEL EQUIPO:
+<ul><li>Rubi Aleli Cardenas Hernandez</li>
+<li>Emmanuel Dominguez Torres</li>
+<li>Nidia Alejandra FloresVelazquez</li>
+<li>Adriana Lopez Zarate</li>
+<li>Hugo Gerardo Grajales Zepeda</li></ul>
+</p>
