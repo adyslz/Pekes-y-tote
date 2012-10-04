@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>HackerGarage :: Registro</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="icon" href="img/icono.ico">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.7.2.custom.css" />
+<script type="text/javascript" src="js/valida.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+<script type="text/javascript">
+jQuery(function($){
+	$.datepicker.regional['es'] = {
+		closeText: 'Cerrar',
+		prevText: '&#x3c;Ant',
+		nextText: 'Sig&#x3e;',
+		currentText: 'Hoy',
+		monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+		'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+		monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
+		'Jul','Ago','Sep','Oct','Nov','Dic'],
+		dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
+		dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
+		dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
+		weekHeader: 'Sm',
+		dateFormat: 'dd/mm/yy',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''};
+	$.datepicker.setDefaults($.datepicker.regional['es']);
+});    
+
+        $(document).ready(function() {
+           $("#datepicker").datepicker();
+        });
+    </script>
+</head>
+<body>
+	<header>
+      <ul>
+        	<li id="eve" class="title">Enviar Evento</li>
+        	<li><a href="index.html">Inicio</a></li>
+            <li><a href="calendario.html">Calendario</a></li>
+            <li><a href="#">Enviar Evento</a></li>
+            <li id="img2"><img src="img/rss-logo.png" alt="" id="img" title="Conexion RSS" onClick="alert('Link');"></li>
+        </ul>
+    </header>
+    <article>
+   	<div class="registro">
+   		<form name=regEve>
+        <label class="regLab" for="nombreEve">Nombre del Evento</label>
+        <input type="text" id="nombreEve" name="nombreEve" required pattern="([a-zA-Z]\w*)"/><br /><br/>
+        <div class="error" id="errNombre">
+        	<p>Ingresa un nombre correcto</p><br />
+        </div>
+        <label class="regLab" for="imagenEvento">Imagen del Evento</label>
+        <input type="file" id="imagen" name="imagenEvento"  accept="image/*" /><br /><br/>
+        <div class="error" id="errImagen">
+        	<p>Aun no has seleccionado una imagen</p><br />
+        </div>
+        <label class="regLab" for="descripcion">Descripcion del Evento</label>
+        <textarea id="descripcion" name="descripcion" rows="5" cols="50" placeholder="Escribe aqui" required></textarea><br /><br/>
+        <div class="error" id="errDesc">
+        	<p>Ingresa una Descripcion</p><br />
+        </div>
+        <label class="regLab" for="precio">Precio</label>
+        <input type="text" id="precio" name="precio" required pattern="(([0-9])*.([0-9])*)"><br /><br/>
+        <div class="error" id="errPrecio">
+        	<p>El formato es invalido ingresa un formato: 00.00 por ejemplo</p>
+        </div>
+        <label class="regLab" for="capacidad">Capacidad</label>
+        <input type="radio" name="capacidad" value="ilimitada" onClick="hab()"/>Ilimitada<br />
+       	<input type="radio" name="capacidad" value="limitada" onClick="hab()"/>Limitada
+        <input type="text" id="cap" name="capacidad" disabled="disabled"/><br/>
+       <br/><br />
+        <div class="error" id="errCap">
+ 			<p>Selecciona si es capaciad Limitada o Ilimitada</p>       
+        </div>
+        <div class="error" id="errCap2">
+        	<p>Ingresa la capacidad específica</p>
+        </div>
+        <div class="error" id="errCap3">
+        	<p>La cantidad es invalida (mínimo 10, máximo 1000)</p>
+        </div>
+        <label class="regLab" for="opcionesCat">Categoria</label>
+        <select id="opcionesCat" name="opcCat">
+        	<option selected value="0">Elige una categoria</option>
+            <option value="1">Curso/Taller</option>
+            <option value="2">Conferencia</option>
+            <option value="3">Convivencia</option>
+        </select><br/><br/>
+        <div class="error" id="errCatego">
+        	<p>Selecciona una categoria</p><br/>
+        </div>
+     	<label class="regLab" for="fecEve">Fecha del Evento</label>
+        <input id="datepicker" type="text" name="datepicker" readonly="readonly" placeholder="Elige la fecha"/><br /><br/>
+        <div class="error" id="errFecha">
+        	<p>La fecha debe ser posterior a la actual</p>
+        </div>
+        <input id="fecCre" type="hidden" name="fecCre"/><br /><br/>
+        <button class="botones" type="reset" name="limpia">Limpiar</button>
+        <button class="botones" type="button" onClick="validaFormulario()">Enviar</button>
+        </form>
+        
+    </div>
+    </article>
+    
+</body>
+	<footer>
+       	&copy; Copyright Pekes y Tote
+    </footer>
+</html>

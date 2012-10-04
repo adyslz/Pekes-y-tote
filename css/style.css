@@ -267,9 +267,9 @@ footer
 }
 
 h1
-{
-	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+{font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
 	font-size:18px;
+	
 }
 
 p
@@ -324,3 +324,52 @@ p
 	text-decoration:none;
 	color:#069;
 }*/
+
+/*----*/
+.registro
+{
+	position: absolute;
+	top: 25%;
+	left: 57%;
+	filter: alpha(opacity=80);
+	opacity: .8;
+	width: 515px;
+	margin-left: -350px;
+	height: 700px;
+	margin-top: -300;
+	border: 1px solid #808080;
+	background-color: #fff;
+	padding: 15px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+}
+
+.regLab
+{
+	display:block;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	color:black;
+	font-weight:bold;
+	font-size:18px;
+}
+
+input{
+	padding: 3px;
+	}
+
+.botones{
+	color: #F60;
+	background: #033;
+	font-family: Verdana;
+	font-size:18px;
+	-webkit-border-radius: 5px;
+  	-moz-border-radius: 5px;
+	}
+.error{
+	background-color: red;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    color: blue;
+    display: none;
+	}
