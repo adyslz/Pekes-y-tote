@@ -374,7 +374,7 @@ input{
     display: none;
 	}
 
-
+//Agregados por tote
 .containerBox{
 	top: 25%;
 	left: 57%;
@@ -448,3 +448,7 @@ input{
 	text-shadow:#1195EE 0 1px 0;
 
 }
+.rechazado{
+	color:red;
+}
+//Agregados por tote
