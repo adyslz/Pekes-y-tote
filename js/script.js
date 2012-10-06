@@ -22,6 +22,7 @@ function borrar(el){
 	elemento.parent().remove();
 }
 
+
 function editar(el){
 	//abrira una nueva pagina donde estara el form
 }
