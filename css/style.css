@@ -412,6 +412,23 @@ input{
 	-ms-border-radius: 10px;
 	overflow-y:auto;
 }
+.box3
+{
+	postion:relative;
+	clear:both;
+	filter: alpha(opacity=80);
+	opacity: .8;
+	margin-left:125px;
+	margin-top:550px;
+	width: 600px;
+	height: 500px;
+	border: 1px solid #808080;
+	background-color: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	overflow-y:auto;
+}
 
 .evento{
 -webkit-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;

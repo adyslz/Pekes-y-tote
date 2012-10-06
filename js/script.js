@@ -10,3 +10,18 @@ function switchImg(el){
 	}
 	console.log(element);
 }
+
+function borrar(el){
+	var form=$('#borrarForm');
+	var elemento=$(el);
+	$('#idEventoField').val(elemento.parent().attr('id'));
+	//form.submit();
+	console.log('form submit con nuevo valor '+$(form[0].elements[0]).val()
+)
+	//TODO remove from database code
+	elemento.parent().remove();
+}
+
+function editar(el){
+	//abrira una nueva pagina donde estara el form
+}
