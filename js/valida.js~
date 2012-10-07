@@ -1,17 +1,4 @@
 function hab(){
-	if(document.regEve.capacidad[1].checked){
-		document.getElementById("cap").disabled ="";
-		document.getElementById("errCap2").style.display ="inline";
-		}
-	else{
-		document.getElementById("cap").disabled ="disable";
-		document.getElementById("cap").value ="";
-		document.getElementById("errCap2").style.display ="none";
-		document.getElementById("errCap").style.display ="none";
-		}
-	}
-	
-function hab2(){
 	if(document.editaEve.capacidad[1].checked){
 		document.getElementById("cap").disabled ="";
 		document.getElementById("errCap2").style.display ="inline";
