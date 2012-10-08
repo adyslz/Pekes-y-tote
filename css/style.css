@@ -470,3 +470,12 @@ input{
 	color:red;
 }
 /*Agregados por tote*/
+
+#listaEventos{
+	list-style: none;
+		
+}
+
+li .titulo{
+	color: darkcyan;	
+	}
