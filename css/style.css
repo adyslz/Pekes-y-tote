@@ -701,3 +701,10 @@ footer h6 {
   width: 50%;
   float: right;
 }
+.error{
+	background-color: red;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    color: blue;
+    display: none;
+}

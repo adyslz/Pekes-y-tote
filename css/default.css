@@ -7,12 +7,14 @@ jbustamante@emenia.es
 /* 
 	R E S E T (Por Eric Meyer)
 */
-	span, applet, object, iframe,
-	blockquote, pre, abbr, acronym, address, big, cite, code,
+	html, body, div, span, applet, object, iframe,
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+	a, abbr, acronym, address, big, cite, code,
 	del, dfn, em, font, img, ins, kbd, q, s, samp,
 	small, strike, strong, sub, sup, tt, var,
 	b, u, i, center,
 	dl, dt, dd, ol, ul, li,
+	fieldset, form, label, legend,
 	table, caption, tbody, tfoot, thead, tr, th, td {	margin: 0;	padding: 0;	border: 0;	outline: 0;	font-size: 100%;
 														vertical-align: top;	background: transparent;}
 	body 											{	line-height: 1;}
@@ -27,7 +29,7 @@ jbustamante@emenia.es
 
 /* 
 	C L A S E S   P R E S E N T A C I O N A L E S
-
+*/
 	.aligncenter 			{	display:block; margin:0 auto }
 	.alignleft 				{	float:left }
 	.alignright 			{	float:right }
@@ -36,13 +38,13 @@ jbustamante@emenia.es
 	E S T I L O S    G E N E R A L E S
 */
 	html, body 				{ 	margin: 0; padding: 0; text-align: center; width: 100%; }
-/*	body					{	color: #333; font-family: Verdana, Tahoma, Geneva, sans-serif; font-size: 62.5%; line-height: 1.7em; text-align: center;}
+	body					{	color: #333; font-family: Verdana, Tahoma, Geneva, sans-serif; font-size: 62.5%; line-height: 1.7em; text-align: center;}
 	h1						{	font-size: 2em; line-height: 1em;}
 	h2						{	font-size: 1.3em; line-height: 1em; margin-top: 10px;}
 	p						{	margin-top: 20px;}
-/*	a:link, a:visited		{	color: #000; text-decoration: underline; }
+	a:link, a:visited		{	color: #000; text-decoration: underline; }
 	a:hover					{	color: #f4A774;}
-	a:active				{	color: #000; text-decoration: underline; }*/
+	a:active				{	color: #000; text-decoration: underline; }
 /*
 	C A B E C E R A
 */	

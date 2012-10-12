@@ -1,5 +1,5 @@
 function hab(){
-	if(document.regEve.capacidad[1].checked){
+	if(document.getElementById("limitada").checked){
 		document.getElementById("cap").disabled ="";
 		document.getElementById("errCap2").style.display ="inline";
 		}
@@ -240,21 +240,21 @@ function validaFormulario(){
 	var mes=fecha.getMonth()+1;
 	var anio=fecha.getFullYear();
 	//valida input nombre
-	if(document.regEve.nombreEve.value==''){//si esta vacio el valor
-		document.getElementById("errNombre").style.display = "inline";
+	if(document.getElementById("name").value==''){//si esta vacio el valor
+		document.getElementById("errorName").style.display ='inline';
 		bandera[0]=0;
 		}
 	else{
-		document.getElementById("errNombre").style.display = "none";
-		if(!/([a-zA-z])\w*/.test(document.regEve.nombreEve.value)){//si ya escribio algo pero es un error
-			document.getElementById("errNombre").style.display = "inline";
+		document.getElementById("errorName").style.display = "none";
+		if(!/([a-zA-z])\w*/.test(document.getElementById("name").value)){//si ya escribio algo pero es un error
+			document.getElementById("errorName").style.display = "inline";
 			bandera[0]=0;
 			}
 		else
 			bandera[0]=1;
 	}
 	//valida input imagen
-	if(document.regEve.imagenEvento.value==''){//si esta vacio el valor
+	if(document.getElementById("imagenEvento").value==''){//si esta vacio el valor
 		document.getElementById("errImagen").style.display = "inline";
 		bandera[1]=0;
 		}
@@ -263,7 +263,7 @@ function validaFormulario(){
 		bandera[1]=1;
 		}
 		
-	if(document.regEve.descripcion.value.length==0){
+	if(document.getElementById("comments").value.length==0){
 		document.getElementById("errDesc").style.display = "inline";
 		bandera[2]=0;
 		}
@@ -271,40 +271,47 @@ function validaFormulario(){
 		document.getElementById("errDesc").style.display = "none";
 		bandera[2]=1;
 		}	
-	if(document.regEve.precio.value==''){
+	if(document.getElementById("precio").value==''){
 		document.getElementById("errPrecio").style.display = "inline";
 		bandera[3]=0;
 		}
 	else{
 		document.getElementById("errPrecio").style.display ="none";
-		if(!/^([0-9])*[.]?[0-9]*$/.test(document.regEve.precio.value)){
+		var precio=document.getElementById("precio").value;
+		if(precio.charAt(0)=="0"){
+			document.getElementById("errPrecio").style.display="inline";
+			bandera[3]=0;
+			}
+		else{
+			if(!/^([0-9])*[.]?[0-9]*$/.test(document.getElementById("precio").value)){
 			document.getElementById("errPrecio").style.display ="inline";
 			bandera[3]=0;
 			}
-		else
-			bandera[3]=1;
+			else
+				bandera[3]=1;
+		}
 		}
 	//validar que capacidad este seleccionada
-	if(!(document.regEve.capacidad[0].checked)&&!(document.regEve.capacidad[1].checked)){
+	if((!document.getElementById("ilimitada").checked)&&(!document.getElementById("limitada").checked)){
 		document.getElementById("errCap").style.display ="inline";
 		bandera[4]=0;
 		document.getElementById("errCap3").style.display ="none";
 		}
 	else{
-		if(document.regEve.capacidad[0].checked){//si esta selecionado el ilimitado desabilita el input de cantidad
+		if(document.getElementById("ilimitada").checked){//si esta selecionado el ilimitado desabilita el input de cantidad
 			document.getElementById("cap").disabled ="disable";//desbilita
 			document.getElementById("cap").value ="";
 			document.getElementById("errCap2").style.display ="none";//quita el cuadro de error
 			bandera[4]=1;
 			}
 		else{//si no esta seleccionado ilimitado (esta seleccionado limitado)
-			if(document.regEve.cap.value==''){//evalua que no este vacio el input de cantidad
+			if(document.getElementById("cap").value==''){//evalua que no este vacio el input de cantidad
 				document.getElementById("errCap3").style.display ="inline";//muestra errror
 				bandera[5]=0;
 			}
 			else{//no esta vacio
 				document.getElementById("errCap3").style.direction ="none";//oculta el error
-				if(!/([0-9]){2,4}/.test(document.regEve.cap.value)){//evalua que sea valida la cantidad
+				if(!/([0-9]){2,4}/.test(document.getElementById("cap").value)){//evalua que sea valida la cantidad
 					document.getElementById("errCap3").style.display ="inline";
 					bandera[5]=0;
 					}//no es valida muestra el error
@@ -318,7 +325,7 @@ function validaFormulario(){
 		document.getElementById("errCap2").style.display ="none";
 		}
 	//validar que seleccione una categoria
-	if(document.regEve.opcionesCat.selectedIndex==0){
+	if(document.getElementById("opcionesCat").selectedIndex==0){
 		document.getElementById("errCatego").style.display ="inline";
 		bandera[6]=0;
 	}
@@ -327,13 +334,13 @@ function validaFormulario(){
 		bandera[6]=1;
 	}
 	//validar que la fecha del evento sea posterior a la fecha actual
-	if(document.regEve.datepicker.value==''){//evalua que no este vacia la fecha
+	if(document.getElementById("date").value==''){//evalua que no este vacia la fecha
 		document.getElementById("errFecha").style.display ="inline";
 		bandera[7]=0;
 		}
 	else{//si no esta vacia debe evaluar que la fecha sea posterior a la actual
 		document.getElementById("errFecha").style.display ="none";
-		var temp=document.getElementById("datepicker").value;
+		var temp=document.getElementById("date").value;
 		var temp2=temp.split("/");
 		if(temp2[2]==anio){//si es este año debe evaluar fechas posteriores
 			if(temp2[1]==mes)//si es este mes debe evaluar que sean dias posteriores a hoy
@@ -371,7 +378,7 @@ function validaFormulario(){
 				}
 			}
 		if(camposCorrectos==1)
-			document.regEve.submit();
+			document.getElementById("contactForm").submit();
 		else{
 			alert("hay algun campo incorrecto no es posible enviar");
 			
