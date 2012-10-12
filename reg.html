@@ -1,0 +1,285 @@
+<!doctype html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8"/>
+		<title>HackerGarage :: Registro</title>
+        <link rel="icon" href="img/icono.ico">
+		 
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" media="all" href="css/style.css"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->		
+				
+		<!-- JS -->
+		<script src="js/jquery-1.7.1.min.js"></script>
+		<script src="js/custom.js"></script>
+		<script src="js/tabs.js"></script>
+		<script src="js/css3-mediaqueries.js"></script>
+		<script src="js/jquery.columnizer.min.js"></script>
+		
+		<!-- Isotope -->
+		<script src="js/jquery.isotope.min.js"></script>
+		
+		<!-- Lof slider -->
+		<script src="js/jquery.easing.js"></script>
+		<script src="js/lof-slider.js"></script>
+		<link rel="stylesheet" href="css/lof-slider.css" media="all"  /> 
+		<!-- ENDS slider -->
+		
+		<!-- Tweet -->
+		<link rel="stylesheet" href="css/jquery.tweet.css" media="all"  /> 
+		<script src="js/tweet/jquery.tweet.js" ></script> 
+		<!-- ENDS Tweet -->
+		
+		<!-- superfish -->
+		<link rel="stylesheet" media="screen" href="css/superfish.css" /> 
+		<script  src="js/superfish-1.4.8/js/hoverIntent.js"></script>
+		<script  src="js/superfish-1.4.8/js/superfish.js"></script>
+		<script  src="js/superfish-1.4.8/js/supersubs.js"></script>
+		<!-- ENDS superfish -->
+		
+		<!-- prettyPhoto -->
+		<script  src="js/prettyPhoto/js/jquery.prettyPhoto.js"></script>
+		<link rel="stylesheet" href="js/prettyPhoto/css/prettyPhoto.css"  media="screen" />
+		<!-- ENDS prettyPhoto -->
+		
+		<!-- poshytip -->
+		<link rel="stylesheet" href="js/poshytip-1.1/src/tip-twitter/tip-twitter.css"  />
+		<link rel="stylesheet" href="js/poshytip-1.1/src/tip-yellowsimple/tip-yellowsimple.css"  />
+		<script  src="js/poshytip-1.1/src/jquery.poshytip.min.js"></script>
+		<!-- ENDS poshytip -->
+		
+		<!-- JCarousel -->
+		<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
+		<link rel="stylesheet" media="screen" href="css/carousel.css" /> 
+		<!-- ENDS JCarousel -->
+		
+		<!-- GOOGLE FONTS -->
+		<link href='http://fonts.googleapis.com/css?family=Voltaire' rel='stylesheet' type='text/css'>
+
+		<!-- modernizr -->
+		<script src="js/modernizr.js"></script>
+		
+		<!-- SKIN -->
+		<link rel="stylesheet" media="all" href="css/skin.css"/>
+		
+		<!-- Less framework -->
+		<link rel="stylesheet" media="all" href="css/lessframework.css"/>
+		
+		<!-- flexslider -->
+		<link rel="stylesheet" href="css/flexslider.css" >
+		<script src="js/jquery.flexslider.js"></script>
+
+	</head>
+	
+	
+	<body class="page" onload="">
+	
+		<!-- HEADER -->
+		<header>
+			<div class="wrapper cf">
+				
+				<div id="logo">
+					<a href="index.html"><h1>Registro de Eventos</h1></a>
+				</div>
+				
+				<!-- nav -->
+				<ul id="nav" class="sf-menu">
+					<li><a href="index.html">Inicio</a></li>
+					<li><a href="cal.html">Calendario</a></li>
+					<li class="current-menu-item"><a href="reg.html">Enviar Evento</a>
+						<!--<ul>
+							<li><a href="page-elements.html">Elements</a></li>
+							<li><a href="page-icons.html">Icons</a></li>
+							<li><a href="page-typography.html">Typography</a></li>
+						</ul>-->
+					</li>
+					<!--<li><a href="portfolio.html">Mas Eventos</a></li>
+					<li><a href="contact.html">Contacto</a></li>-->
+				</ul>
+				<div id="combo-holder"></div>
+				<!-- ends nav -->
+
+			</div>
+		</header>
+		<!-- ENDS HEADER -->
+		
+		<!-- MAIN -->
+		<div id="main">
+			<div class="wrapper cf">
+				<!-- page content-->
+	        	<div id="page-content" class="cf">        		
+		        	<!-- entry-content -->	
+		        	<div class="entry-content cf">	
+					
+						<p><h2>Formulario de Registro de Eventos</h2></p>
+				
+				<!-- form -->
+				<script type="text/javascript" src="js/form-validation.js"></script>
+				<form id="contactForm" action="#" method="post">
+					<fieldset>
+														
+						<p>
+							<label for="name" >Nombre del Evento</label>
+							<input name="name"  id="name" type="text" class="form-poshytip" title="Ingresa el Nombre del Evento" />
+						</p>
+                        
+						<p>
+                        	<label for="imagenEvento">Imagen del Evento</label>
+        					<input type="file" id="imagen" name="imagenEvento"  accept="image/*" class="form-poshytip" title="Ingresa una Imagen Valida (.png,.jpg,.gif)" />
+                        </p>
+                        
+						<p>
+							<label for="comments">Descripci&oacute;n del Evento</label>
+							<textarea  name="comments"  id="comments" rows="5" cols="20" class="form-poshytip" title="Ingresa Descripcion"></textarea>
+						</p>
+                        
+                        <p> 
+        <label class="regLab" for="precio">Precio</label>
+        <input type="text" id="precio" name="precio" required pattern="(([0-9])*.([0-9])*)"><br /><br/>
+        <div class="error" id="errPrecio">
+        	<p>El formato es invalido ingresa un formato: 00.00 por ejemplo</p>
+        </div>
+        				</p>
+        <label class="regLab" for="capacidad">Capacidad</label>
+        <input type="radio" name="capacidad" value="ilimitada" onClick="hab()"/>Ilimitada<br />
+       	<input type="radio" name="capacidad" value="limitada" onClick="hab()"/>Limitada
+        <input type="text" id="cap" name="capacidad" disabled="disabled"/><br/>
+       <br/><br />
+        <div class="error" id="errCap">
+ 			<p>Selecciona si es capaciad Limitada o Ilimitada</p>       
+        </div>
+        <div class="error" id="errCap2">
+        	<p>Ingresa la capacidad específica</p>
+        </div>
+        <div class="error" id="errCap3">
+        	<p>La cantidad es invalida (mínimo 10, máximo 1000)</p>
+        </div>
+        <label class="regLab" for="opcionesCat">Categoria</label>
+        <select id="opcionesCat" name="opcCat">
+        	<option selected value="0">Elige una categoria</option>
+            <option value="1">Curso/Taller</option>
+            <option value="2">Conferencia</option>
+            <option value="3">Convivencia</option>
+        </select><br/><br/>
+        <div class="error" id="errCatego">
+        	<p>Selecciona una categoria</p><br/>
+        </div>
+     	<label class="regLab" for="fecEve">Fecha del Evento</label>
+        <input id="datepicker" type="text" name="datepicker" readonly placeholder="Elige la fecha"/><br /><br/>
+        <div class="error" id="errFecha">
+        	<p>La fecha debe ser posterior a la actual</p>
+        </div>
+        <input id="fecCre" type="hidden" name="fecCre"/><br /><br/>
+        <p><input type="button" value="Enviar" name="submit" id="submit" /> <span id="error" class="warning">Message</span>
+        <input type="button" value="Borrar Datos" name="submit" id="submit" onClick="validaFormulario()" /> <span id="error" class="warning">Message</span></p>
+					</fieldset>
+					
+				</form>
+				<p id="sent-form-msg" class="success">Form data sent. Thanks for your comments.</p>
+				<!-- ENDS form -->
+						</div>
+				    </div>
+				    <!-- ENDS entry content -->
+	    		</div>
+	    		<!-- ENDS page content-->
+			</div><!-- ENDS WRAPPER -->
+		</div>
+		<!-- ENDS MAIN -->
+		
+		
+		<!-- FOOTER -->
+		<footer>
+			<div class="wrapper cf">
+			
+				<!-- widgets -->
+				<ul  class="widget-cols cf">
+					<li class="first-col">
+						
+						<div class="widget-block">
+							<h4>Eventos Recientes</h4>
+							<div class="recent-post cf">
+								<a href="#" class="thumb"><img src="img/dummies/54x54.gif" alt="Post" /></a>
+								<div class="post-head">
+									<a href="#">Evento 1</a><span> March 12, 2011</span>
+								</div>
+							</div>
+							<div class="recent-post cf">
+								<a href="#" class="thumb"><img src="img/dummies/54x54.gif" alt="Post" /></a>
+								<div class="post-head">
+									<a href="#">Evento 2</a><span> March 11, 2011</span>
+								</div>
+							</div>
+							<div class="recent-post cf">
+								<a href="#" class="thumb"><img src="img/dummies/54x54.gif" alt="Post" /></a>
+								<div class="post-head">
+									<a href="#">As&iacute; es Evento 3</a><span> March 10, 2011</span>
+								</div>
+							</div>
+						</div>
+					</li>
+					
+					<li class="second-col">
+						
+						<div class="widget-block">
+							<h4>Sobre Nosotros</h4>
+							<p>Somos unos estudiantes del <a href="http://cucei.udg.mx">Centro Universitario de Ciencias Exactas e Ingenierias</a> que la estamos haciendo de pedo para pasar Programacion Web :D</p>
+                            <p>
+                            mas bla bla bla
+                            </p>
+						</div>
+						
+					</li>
+					
+					<li class="third-col">
+						
+						<div class="widget-block">
+							<div id="tweets" class="footer-col tweet">
+		         				<h4>Tweets Recientes</h4>
+		         			</div>
+		         		</div>
+		         		
+					</li>
+					
+					<li class="fourth-col">
+						
+						<div class="widget-block">
+							<h4>Categorias</h4>
+							<ul>
+								<li class="cat-item"><a href="#" >Programaci&oacute;n en C</a></li>
+								<li class="cat-item"><a href="#" >Programaci&oacute;n en C</a></li>
+								<li class="cat-item"><a href="#" >Programaci&oacute;n en C++</a></li>
+								<li class="cat-item"><a href="#" >Programaci&oacute;n en Java</a></li>
+								<li class="cat-item"><a href="#" >Matematicas</a></li>
+								<li class="cat-item"><a href="#" >La vida y el amor</a></li>
+							</ul>
+						</div>
+		         		
+					</li>	
+				</ul>
+				<!-- ENDS widgets -->	
+				
+				
+				<!-- bottom -->
+				<div class="footer-bottom">
+					<div class="left">Todos los Derechos Reservados 2012 &copy; by <a href="#" >Peques_Tote y el geeRa :D</a></div>
+						<ul id="social-bar" class="cf sb">
+							<li><a href="http://www.facebook.com"  title="Become a fan" class="facebook" target="_blank">Facebbok</a></li>
+							<li><a href="http://www.twitter.com" title="Follow my tweets" class="twitter" target="_blank"></a></li>
+							<li><a href="http://plus.google.com" title="Enter my circles" class="plus" target="_blank"></a></li>
+						</ul>
+				</div>	
+				<!-- ENDS bottom -->
+			
+			</div>
+		</footer>
+		<!-- ENDS FOOTER -->
+		
+	</body>
+	
+	
+	
+</html>
