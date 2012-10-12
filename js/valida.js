@@ -12,7 +12,7 @@ function hab(){
 	}
 	
 function hab2(){
-	if(document.editaEve.capacidad[1].checked){
+	if(document.contactForm.capacidad[1].checked){
 		document.getElementById("cap").disabled ="";
 		document.getElementById("errCap2").style.display ="inline";
 		}
@@ -394,7 +394,7 @@ function validaEdicion(){
 	var anio=fecha.getFullYear();
 
 	//valida input imagen
-	if(document.editaEve.imagenEvento.value==''){
+	if(document.contactForm.imagenEvento.value==''){
 		document.getElementById("errImagen").style.display="inline";
 		bandera[1]=0;
 		}
@@ -404,7 +404,7 @@ function validaEdicion(){
 		}
 		
 	//valida descripcion evento
-	if(document.editaEve.descripcion.value.length==0){
+	if(document.contactForm.descripcion.value.length==0){
 		document.getElementById("errDesc").style.display = "inline";
 		bandera[2]=0;
 		}
@@ -414,18 +414,18 @@ function validaEdicion(){
 		}	
 	
 	//valida precio	
-	if(document.editaEve.precio.value==''){
+	if(document.contactForm.precio.value==''){
 		document.getElementById("errPrecio").style.display = "inline";
 		bandera[3]=0;
 		}
 	else{
 		document.getElementById("errPrecio").style.display ="none";
-		var precio=document.editaEve.precio.value;
+		var precio=document.contactForm.precio.value;
 		if(precio.charAt(0)=="0"){
 			document.getElementById("errPrecio").style.display="inline";
 			bandera[3]=0;
 			}
-			else if(!/^([0-9])*[.]?[0-9]*$/.test(document.editaEve.precio.value)){
+			else if(!/^([0-9])*[.]?[0-9]*$/.test(document.contactForm.precio.value)){
 			document.getElementById("errPrecio").style.display ="inline";
 			bandera[3]=0;
 			}
@@ -434,25 +434,25 @@ function validaEdicion(){
 		}
 	
 	//validar que capacidad este seleccionada
-	if(!(document.editaEve.capacidad[0].checked)&&!(document.editaEve.capacidad[1].checked)){
+	if(!(document.contactForm.capacidad[0].checked)&&!(document.contactForm.capacidad[1].checked)){
 		document.getElementById("errCap").style.display ="inline";
 		bandera[4]=0;
 		document.getElementById("errCap3").style.display ="none";
 		}
 	else{
-		if(document.editaEve.capacidad[0].checked){//si esta selecionado el ilimitado desabilita el input de cantidad
+		if(document.contactForm.capacidad[0].checked){//si esta selecionado el ilimitado desabilita el input de cantidad
 			document.getElementById("cap").disabled ="disable";//desbilita
 			document.getElementById("errCap2").style.display ="none";//quita el cuadro de error
 			bandera[4]=1;
 			}
 		else{//si no esta seleccionado ilimitado (esta seleccionado limitado)
-			if(document.editaEve.cap.value==''){//evalua que no este vacio el input de cantidad
+			if(document.contactForm.cap.value==''){//evalua que no este vacio el input de cantidad
 				document.getElementById("errCap3").style.display ="inline";//muestra errror
 				bandera[5]=0;
 			}
 			else{//no esta vacio
 				document.getElementById("errCap3").style.direction ="none";//oculta el error
-				if(!/([0-9]){2,4}/.test(document.editaEve.cap.value)){//evalua que sea valida la cantidad
+				if(!/([0-9]){2,4}/.test(document.contactForm.cap.value)){//evalua que sea valida la cantidad
 					document.getElementById("errCap3").style.display ="inline";
 					bandera[5]=0;
 					}//no es valida muestra el error
@@ -467,7 +467,7 @@ function validaEdicion(){
 		}
 		
 	//validar que la fecha del evento sea posterior a la fecha actual
-	if(document.editaEve.datepicker.value==''){//evalua que no este vacia la fecha
+	if(document.contactForm.datepicker.value==''){//evalua que no este vacia la fecha
 		document.getElementById("errFecha").style.display ="inline";
 		bandera[6]=0;
 		}
@@ -511,7 +511,7 @@ function validaEdicion(){
 				}
 			}
 		if(camposCorrectos==1)
-			document.editaEve.submit();
-		else
-			alert("hay algun campo incorrecto no es posible enviar");
+			document.getElementById("contactForm").submit();
+	
+			
 	}
