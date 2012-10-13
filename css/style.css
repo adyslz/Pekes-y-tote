@@ -708,3 +708,35 @@ footer h6 {
     color: blue;
     display: none;
 }
+
+.listEvent{
+	list-style: none;
+	float: left;	
+	margin-left: 150px;
+	font-size: 1.5em;
+	margin-top: 30px;
+}
+
+.listEvent li{
+	margin-bottom: 20px;
+	margin-left: 20px;
+}
+	
+.listBtnEvent{
+	list-style: none;
+	float: right;	
+	font-size: 1.5em;	
+	margin-right: 150px;
+	margin-top: 30px;
+}
+
+.listBtnEvent li{
+	margin-bottom: 10px;
+	margin-right: 90px;
+}#listaEventos{
+	list-style: none;		
+}
+
+li .titulo{
+	color: darkcyan;	
+}
