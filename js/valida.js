@@ -262,8 +262,10 @@ function validaFormulario(){
 		document.getElementById("errImagen").style.display = "none";
 		bandera[1]=1;
 		}
-		
-	if(document.getElementById("comments").value.length==0){
+	var nicE = new nicEditors.findEditor('comments');
+	var textoAValidar = nicE.getContent()
+
+	if(textoAValidar==0||textoAValidar=='<br>'){
 		document.getElementById("errDesc").style.display = "inline";
 		bandera[2]=0;
 		}
