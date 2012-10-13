@@ -16,6 +16,7 @@
 		<script src="js/jquery-1.7.1.min.js"></script>
 		<script src="js/custom.js"></script>
 		<script src="js/tabs.js"></script>
+		<script src="js/admEvent.js"></script>
 		<script src="js/css3-mediaqueries.js"></script>
 		<script src="js/jquery.columnizer.min.js"></script>
 		
@@ -75,16 +76,31 @@
 	</head>	
 <body>
 	<header>
-      <ul>
-        	<li id="eve" class="title">Aprobar Eventos</li>
-        	<li><a href="index.html">Inicio</a></li>
-            <li><a href="calendario.html">Calendario</a></li>
-            <li><a href="#">Enviar Evento</a></li>
-            <li id="img2"><img src="img/rss-logo.png" alt="" id="img" title="Conexion RSS" onClick="alert('Link');"></li>
-        </ul>
+      <div class="wrapper cf">
+				
+				<div id="logo">
+					<a href="index.html"><h1>Edición de Evento</h1></a>
+				</div>
+				
+				<!-- nav -->
+				<ul id="nav" class="sf-menu">
+					<li><a href="index.html">Inicio</a></li>
+					<li><a href="cal.html">Calendario</a></li>
+					<li class="current-menu-item"><a href="reg.html">Enviar Evento</a>
+						<!--<ul>
+							<li><a href="page-elements.html">Elements</a></li>
+							<li><a href="page-icons.html">Icons</a></li>
+							<li><a href="page-typography.html">Typography</a></li>
+						</ul>-->
+					</li>
+					<!--<li><a href="portfolio.html">Mas Eventos</a></li>
+					<li><a href="contact.html">Contacto</a></li>-->
+				</ul>
+				<div id="combo-holder"></div>
+				<!-- ends nav -->
+			</div>
     </header>
    <!-- MAIN -->
-	<script type="text/javascript" src="js/admEvent.js"></script>		
 	<div id="main">
 		<div class="wrapper cf">
 			<!-- page content-->
@@ -98,11 +114,11 @@
         				<li id="lsparty">Party Night</li>
     				</ul>
     				<ul class="listBtnEvent">
-    					<li><button type="button" id="btnhackers" onclick="eventoEleg(1)"> Ver evento </button></a></li>
-        				<li><button type="button" id="btncotorreo" onclick="eventoEleg(2)"> Ver evento </button></li>
-        				<li><button type="button" id="btnparty" onclick="eventoEleg(3)"> Ver evento </button></li>
+    					<li><button type="button" id="btnhackers" name="hackers" onclick="eventoEleg(this)"> Ver evento </button></a></li>
+        				<li><button type="button" id="btncotorreo" name="cotorreo"onclick="eventoEleg(this)"> Ver evento </button></li>
+        				<li><button type="button" id="btnparty" name="party" onclick="eventoEleg(this)"> Ver evento </button></li>
     				</ul>
-    			<div id="infohackers" style="display: none; clear: both;">
+    			<div id="infohackers" class="info" style="display: none; clear: both;">
 						<br /><h3>Jueves 30: Hacker and Founders</h3><br />
             		<img src="img/img1.png" alt="" width="200" height="200"><br /><br />
             		<p>Hacker & founders es una comunidad tecn&oacute;logica basada en la pregunta ¿Qu&eacute; Necesitas?
@@ -118,7 +134,7 @@
          			<button type="button" onclick="admModificar(1)">Modificar</button>
          		</div>
          	</div>
-         	<div id="infocotorreo" style="display:none; clear: both;">
+         	<div id="infocotorreo" class="info" style="display:none; clear: both;">
         			<br /><h3>Sabado 1: Cotorreo Locochon</h3><br />
             	<img src="img/img1.png" alt="" width="200" height="200"><br /><br />
             	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam arcu neque, iaculis ac lacinia sit amet, sollicitudin sit 
@@ -136,7 +152,7 @@
          		<button type="button" onclick="admModificar(2)">Modificar</button>
          	</div>
         </div>
-        <div id="infoparty" style="display:none; clear: both;">
+        <div id="infoparty" class ="info" style="display:none; clear: both;">
         		<br /><h3>Sabado 6: Party Night</h3><br />
             <img src="img/img1.png" alt="" width="200" height="200"><br /><br />
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam arcu neque, iaculis ac lacinia sit amet, sollicitudin sit 

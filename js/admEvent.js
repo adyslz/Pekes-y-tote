@@ -1,16 +1,55 @@
+/**
+*Funcion que muestra la informacion de los eventos
+segun la seleccion.
+opc es el elemento que fue clickeado
+en el html encontraras eventoEleg(this)
+mandando como argumento el elemento
+*/
 function eventoEleg(opc){
-	document.getElementById("infohackers").style.display='none';
-	document.getElementById("infocotorreo").style.display='none';
-	document.getElementById("infoparty").style.display='none';
+
+	/*Esta linea aplica un cambio al css
+	el primer argumento es el atributo que se cambiara
+	y el segundo el valor que se asigna
+	con la primera linea mando a llamar a todos
+	los elementos que tienen la clase info.
+	(agregue la clase info a tus elementos info)
+	*/
+	$('.info').css('display','none');
+	/*con esta linea convierto el elemento que fue clickeado
+	en un elemento de jquery para poder usar el metodo attr
+	*/
+	var element=$(opc);
+	/*
+	attr te permite cambiar el valor de un atributo 
+	de un tag mandando .attr('atributo','nuevovalor')
+	o recuperarlo solo con .attr('atributo')*/
+	var text=element.attr('name');
+
+/*
+	aqui vuelvo a llamar a todos los objetos clase info
+	y ejecuto esta funcion con cada uno de ellos
+	para eso sirve el each() a cada uno de los elementos
+	que regrese el $() se le correra esa funcion
+	para acceder al elemento sobre el que se esta ejecutando
+	se utiliza this.
+*/
+	$('.info').each(function(){
+		/*aqui convierto el elemento info en uno de jquery*/
+		var aux=$(this);
+		/*este if sirve para saber si el id contiene la cadena de texto
+		como les pusiste de id a todos lsEVENTO btnEVENTO etc
+		le puse al boton en el atributo name el valor EVENTO
+		asi puedes buscar que tengan el name del boton
+		en algun lugar del id*/
+		if(aux.attr('id').indexOf(text)!= -1){
+			/*esta linea cambia el css del
+			elemento con clase info que contenga
+			el nombre del boton
+			en su id*/
+			aux.css('display','inherit');
+		}
+	})
 	
-	switch (opc){
-		case 1: document.getElementById("infohackers").style.display='inherit';	
-			break;
-		case 2: document.getElementById("infocotorreo").style.display='inherit';
-			break;
-		case 3: document.getElementById("infoparty").style.display='inherit';
-			break;
-	}
 }
 
 function aprobado(opc){
