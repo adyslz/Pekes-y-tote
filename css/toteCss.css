@@ -11,6 +11,8 @@
 }
 .box2
 {
+
+	background: url(../img/squaresBG.png) ;
 	float:right;
 	filter: alpha(opacity=80);
 	opacity: .8;
@@ -23,8 +25,10 @@
 	-ms-border-radius: 10px;
 	overflow-y:auto;
 }
+.box2 h1 {color: rgb(203, 84, 50);}
 .box1
 {
+	background: url(../img/squaresBG.png) ;
 	float:left;
 	filter: alpha(opacity=80);
 	opacity: .8;
@@ -37,8 +41,11 @@
 	-ms-border-radius: 10px;
 	overflow-y:auto;
 }
+.box1 h1 {color: rgb(203, 84, 50);}
+
 .box3
 {
+	background: url(../img/squaresBG.png) ;
 	postion:relative;
 	clear:both;
 	filter: alpha(opacity=80);
@@ -54,6 +61,8 @@
 	-ms-border-radius: 10px;
 	overflow-y:auto;
 }
+.box3 h1 {color: rgb(203, 84, 50);}
+
 
 .evento{
 -webkit-box-shadow:rgba(0,0,0,0.2) 0 1px 0 0;
