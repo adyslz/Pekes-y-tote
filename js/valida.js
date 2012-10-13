@@ -404,7 +404,9 @@ function validaEdicion(){
 		}
 		
 	//valida descripcion evento
-	if(document.contactForm.descripcion.value.length==0){
+	var nicE = new nicEditors.findEditor('descripcion');
+	var textoAValidar = nicE.getContent()
+	if(textoAValidar==0||textoAValidar=='<br>'){
 		document.getElementById("errDesc").style.display = "inline";
 		bandera[2]=0;
 		}
