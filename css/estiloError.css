@@ -1,0 +1,16 @@
+.error{
+	 font-family:Arial, Helvetica, sans-serif; 
+    font-size:13px;
+    margin: 10px 0px;
+    padding:15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    color: #800000;
+    background-color: #E9967A;
+    background-image: url('../img/error.png');
+    display: none;
+    -webkit-border-radius: 10px;
+	 -moz-border-radius: 10px;
+	 -ms-border-radius: 10px;
+	}
+	

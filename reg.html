@@ -4,6 +4,7 @@
 		<title>HackerGarage :: Registro</title>
         <link rel="icon" href="img/icono.ico">
 		<script type="text/javascript" src="js/valida.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/estiloError.css"/>
         <script type="text/javascript" src="js/resetForm.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.7.2.custom.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
@@ -137,15 +138,16 @@
 						<p>
 							<label for="name" >Nombre del Evento</label>
 							<input name="name"  id="name" type="text" class="form-poshytip" title="Ingresa el Nombre del Evento" />
-						</p>
+						
                         <div class="error" id="errorName">
-                        	<p>El nombre no es valido</p>
+                        	El nombre no es valido
                          </div>
+                  </p>
 						<p>
                         	<label for="imagenEvento">Imagen del Evento</label>
         					<input type="file" id="imagenEvento" name="imagenEvento"  accept="image/*" class="form-poshytip" title="Ingresa una Imagen Valida (.png,.jpg,.gif)" />
                             <div class="error" id="errImagen">
-                            <p>Aun no has seleccionado una imagen</p>
+                            Aun no has seleccionado una imagen
                             </div>
                         </p>
                         
@@ -154,41 +156,46 @@
 							<!--<textarea  name="comments"  id="comments" rows="5" cols="20" class="form-poshytip" title="Ingresa Descripcion"></textarea>-->
                             <textarea name="comments" id="comments" rows="5" cols="20"></textarea>
                             <div class="error" id="errDesc">
-                            	<p>Ingresa una descripción</p>
+                            	Ingresa una descripción
                             </div>
 						</p>
                         
                         <p> 
         <label class="regLab" for="precio">Precio</label>
-        <input type="text" id="precio" name="precio" required pattern="(([0-9])*.([0-9])*)"><br /><br/>
+        <input type="text" id="precio" name="precio" required pattern="(([0-9])*.([0-9])*)">
         <div class="error" id="errPrecio">
-        	<p>El formato es invalido ingresa un formato: 00.00 por ejemplo</p>
+        	El formato es invalido ingresa un formato: 00.00 por ejemplo
         </div>
         			</p>
+        <p>
         <label class="regLab" for="capacidad">Capacidad</label>
-        <input type="radio" name="capacidad" value="ilimitada" id="ilimitada" onClick="hab()"/>Ilimitada<br />
+        <input type="radio" name="capacidad" value="ilimitada" id="ilimitada" onClick="hab()"/>Ilimitada<br /><br />
        	<input type="radio" name="capacidad" value="limitada" id="limitada" onClick="hab()" />Limitada
-        <input type="text" id="cap" name="capacidad" disabled="disabled"/><br/>
-       <br/><br />
+        <input type="text" id="cap" name="capacidad" disabled="disabled"/>
+       
         <div class="error" id="errCap">
- 			<p>Selecciona si es capaciad Limitada o Ilimitada</p>       
+ 			Selecciona si es capaciad Limitada o Ilimitada       
         </div>
         <div class="error" id="errCap2">
-        	<p>Ingresa la capacidad específica</p>
+        	Ingresa la capacidad específica
         </div>
         <div class="error" id="errCap3">
-        	<p>La cantidad es invalida (mínimo 10, máximo 1000)</p>
+        	La cantidad es invalida (mínimo 10, máximo 1000)
         </div>
+        </p>
+        <p>
         <label class="regLab" for="opcionesCat">Categoria</label>
         <select id="opcionesCat" name="opcCat">
         	<option selected value="0">Elige una categoria</option>
             <option value="1">Curso/Taller</option>
             <option value="2">Conferencia</option>
             <option value="3">Convivencia</option>
-        </select><br/><br/>
+        </select>
         <div class="error" id="errCatego">
-        	<p>Selecciona una categoria</p><br/>
+        	Selecciona una categoria
         </div>
+        </p>
+        <p>
      	<label class="regLab" for="fecEve">Fecha del Evento</label>
         <input id="date" type="text" name="date" readonly="readonly" placeholder="Elige la fecha"/>
        	<input type="button" value="Calendario" name="selector" id="selector"  />
@@ -203,9 +210,10 @@
 				</script>
 
         <div class="error" id="errFecha">
-        	<p>La fecha debe ser posterior a la actual</p>
+        	La fecha debe ser posterior a la actual
         </div>
-        <input id="fecCre" type="hidden" name="fecCre"/><br /><br/>
+        </p>
+        <input id="fecCre" type="hidden" name="fecCre"/>
         <p><input type="button" value="Enviar" onClick="validaFormulario()"/> <span id="error" class="warning">Message</span>
         <input type="button" value="Borrar Datos"  onClick="resetForm()"  /><!-- <span id="error" class="warning">Message</span></p>-->
 					</fieldset>

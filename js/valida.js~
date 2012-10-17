@@ -381,7 +381,10 @@ function validaFormulario(){
 			}
 		if(camposCorrectos==1)
 			document.getElementById("contactForm").submit();
-
+		else{
+			alert("hay algun campo incorrecto no es posible enviar");
+			
+			}
 			
 }
 

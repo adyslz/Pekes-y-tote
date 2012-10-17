@@ -176,7 +176,7 @@ jQuery(function($){
                   	<label for="descripcion">Descripcion del Evento</label>
         					<textarea id="descripcion" name="descripcion" rows="5" cols="50" placeholder="Escribe aqui" required title="Ingresa la descripción del evento" class="form-poshytip"></textarea>
        					<div class="error" id="errDesc">
-        						Ingresa una Descripcion
+        						<p>Ingresa una Descripcion</p>
         					</div>
                   </p>  
                   
@@ -184,7 +184,7 @@ jQuery(function($){
 							<label for="precio">Precio</label>
 	        				<input type="text" id="precio" name="precio" required pattern="(([0-9])*.([0-9])*)" title="Ingresa el precio del evento" class="form-poshytip"/>
         					<div class="error" id="errPrecio">
-        						El formato es invalido ingresa un precio mayor a 0 con o sin decimal, Ejemplo 10.0
+        						<p>El formato es invalido ingresa un precio mayor a 0 con o sin decimal, Ejemplo 10.0</p>
         					</div>                  
                   </p>  
                   
@@ -194,13 +194,13 @@ jQuery(function($){
        					<input type="radio" name="capacidad" value="limitada" onClick="hab2()"/>Limitada
         					<input type="text" id="cap" name="capacidad" disabled="disabled" title="Ingresa la capacidad de tu evento" class="form-poshytip"/>
         					<div class="error" id="errCap">
- 								Selecciona si es capaciad Limitada o Ilimitada      
+ 								<p>Selecciona si es capaciad Limitada o Ilimitada</p>      
         					</div>
         					<div class="error" id="errCap2">
-        						Ingresa la capacidad especifica
+        						<p>Ingresa la capacidad especifica</p>
         					</div>
         					<div class="error" id="errCap3">
-        						La cantidad es invalida (mínimo 10, máximo 1000)
+        						<p>La cantidad es invalida (mínimo 10, máximo 1000)</p>
         					</div>                  
                   </p>
                   
@@ -218,7 +218,7 @@ jQuery(function($){
 							<label for="datepicker">Fecha del Evento</label>
         					<input id="datepicker" type="text" name="datepicker" readonly="readonly" placeholder="Elige la fecha" title="Selecciona la fecha de tu evento" class="form-poshytip"/>
         					<div class="error" id="errFecha">
-        						La fecha debe ser posterior a la actual
+        						<p>La fecha debe ser posterior a la actual</p>
         					</div>
         					<input id="fecCre" type="hidden" name="fecCre"/>             
                   </p>
