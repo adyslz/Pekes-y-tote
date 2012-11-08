@@ -207,5 +207,5 @@ enviarComent(opc){
 }*/
 
 function admModificar(opc){
-	window.open("edita.html","_self");
+	window.open("edita.php","_self");
 }

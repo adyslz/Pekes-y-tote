@@ -229,11 +229,7 @@ jQuery(function($){
 		</div>
 		<!-- ENDS MAIN -->
 		<?php
-        	include("secciones/footer.html");
-        ?>
-		
+			include("secciones/footer.html");
+		?>
 	</body>
-	
-	
-	
 </html>

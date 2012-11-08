@@ -99,24 +99,8 @@
 					<a href="index.html"><h1>Registro de Eventos</h1></a>
 				</div>
 				<?php
-                	include("secciones/navegacion.php");
+                	include("secciones/navegacion.html");
                 ?>
-				<!-- nav -->
-				<ul id="nav" class="sf-menu">
-					<li><a href="index.html">Inicio</a></li>
-					<li><a href="cal.html">Calendario</a></li>
-					<li class="current-menu-item"><a href="reg.html">Enviar Evento</a>
-						<!--<ul>
-							<li><a href="page-elements.html">Elements</a></li>
-							<li><a href="page-icons.html">Icons</a></li>
-							<li><a href="page-typography.html">Typography</a></li>
-						</ul>-->
-					</li>
-					<!--<li><a href="portfolio.html">Mas Eventos</a></li>
-					<li><a href="contact.html">Contacto</a></li>-->
-				</ul>
-				<div id="combo-holder"></div>
-				<!-- ends nav -->
 
 			</div>
 		</header>
@@ -231,95 +215,9 @@
 			</div><!-- ENDS WRAPPER -->
 		</div>
 		<!-- ENDS MAIN -->
-		
-		
-		<!-- FOOTER -->
-		<footer>
-			<div class="wrapper cf">
-			
-				<!-- widgets -->
-				<ul  class="widget-cols cf">
-					<li class="first-col">
-						
-						<div class="widget-block">
-							<h4>Eventos Recientes</h4>
-							<div class="recent-post cf">
-								<a href="#" class="thumb"><img src="img/dummies/54x54.gif" alt="Post" /></a>
-								<div class="post-head">
-									<a href="#">Evento 1</a><span> March 12, 2011</span>
-								</div>
-							</div>
-							<div class="recent-post cf">
-								<a href="#" class="thumb"><img src="img/dummies/54x54.gif" alt="Post" /></a>
-								<div class="post-head">
-									<a href="#">Evento 2</a><span> March 11, 2011</span>
-								</div>
-							</div>
-							<div class="recent-post cf">
-								<a href="#" class="thumb"><img src="img/dummies/54x54.gif" alt="Post" /></a>
-								<div class="post-head">
-									<a href="#">As&iacute; es Evento 3</a><span> March 10, 2011</span>
-								</div>
-							</div>
-						</div>
-					</li>
-					
-					<li class="second-col">
-						
-						<div class="widget-block">
-							<h4>Sobre Nosotros</h4>
-							<p>Somos unos estudiantes del <a href="http://cucei.udg.mx">Centro Universitario de Ciencias Exactas e Ingenierias</a> que la estamos haciendo de pedo para pasar Programacion Web :D</p>
-                            <p>
-                            mas bla bla bla
-                            </p>
-						</div>
-						
-					</li>
-					
-					<li class="third-col">
-						
-						<div class="widget-block">
-							<div id="tweets" class="footer-col tweet">
-		         				<h4>Tweets Recientes</h4>
-		         			</div>
-		         		</div>
-		         		
-					</li>
-					
-					<li class="fourth-col">
-						
-						<div class="widget-block">
-							<h4>Categorias</h4>
-							<ul>
-								<li class="cat-item"><a href="#" >Programaci&oacute;n en C</a></li>
-								<li class="cat-item"><a href="#" >Programaci&oacute;n en C</a></li>
-								<li class="cat-item"><a href="#" >Programaci&oacute;n en C++</a></li>
-								<li class="cat-item"><a href="#" >Programaci&oacute;n en Java</a></li>
-								<li class="cat-item"><a href="#" >Matematicas</a></li>
-								<li class="cat-item"><a href="#" >La vida y el amor</a></li>
-							</ul>
-						</div>
-		         		
-					</li>	
-				</ul>
-				<!-- ENDS widgets -->	
-				
-				
-				<!-- bottom -->
-				<div class="footer-bottom">
-					<div class="left">Todos los Derechos Reservados 2012 &copy; by <a href="#" >Peques_Tote y el geeRa :D</a></div>
-						<ul id="social-bar" class="cf sb">
-							<li><a href="http://www.facebook.com"  title="Become a fan" class="facebook" target="_blank">Facebbok</a></li>
-							<li><a href="http://www.twitter.com" title="Follow my tweets" class="twitter" target="_blank"></a></li>
-							<li><a href="http://plus.google.com" title="Enter my circles" class="plus" target="_blank"></a></li>
-						</ul>
-				</div>	
-				<!-- ENDS bottom -->
-			
-			</div>
-		</footer>
-		<!-- ENDS FOOTER -->
-		
+		<?php
+		  include("secciones/footer.html");
+		?>	
 	</body>
 	
 	
