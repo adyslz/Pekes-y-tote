@@ -1,11 +1,8 @@
-<<<<<<< HEAD
-=======
 <?php
 	session_start();
 
 ?>
 
->>>>>>> CRUD de estatus de eventos
 <!DOCTYPE html>
 <html class="no-js">
 <head>
@@ -112,6 +109,7 @@
         				<li><button type="button" id="btncotorreo" name="cotorreo"onclick="eventoEleg(this)"> Ver evento </button></li>
         				<li><button type="button" id="btnparty" name="party" onclick="eventoEleg(this)"> Ver evento </button></li>
     				</ul>
+    			<form name="formAdmEvent" method="get" action="php/admEvent_inserta.php">
     			<div id="infohackers" class="info" style="display: none; clear: both;">
 						<br /><h3>Jueves 30: Hacker and Founders</h3><br />
             		<img src="img/img1.png" alt="" width="200" height="200"><br /><br />
@@ -128,6 +126,7 @@
          			<button type="button" onclick="admModificar(1)">Modificar</button>
          		</div>
          	</div>
+         	</form>
          	<div id="infocotorreo" class="info" style="display:none; clear: both;">
         			<br /><h3>Sabado 1: Cotorreo Locochon</h3><br />
             	<img src="img/img1.png" alt="" width="200" height="200"><br /><br />
