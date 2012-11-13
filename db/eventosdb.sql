@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `cc409_pekes_tote`.`Usuario` ;
 CREATE  TABLE IF NOT EXISTS `cc409_pekes_tote`.`Usuario` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nickname` VARCHAR(20) NOT NULL ,
-  `imagen` LONGBLOB NOT NULL ,
+  `imagen` VARCHAR(100) NOT NULL ,
   `tipo` INT NOT NULL ,
   PRIMARY KEY (`id`) ,
   CONSTRAINT `tipo`
