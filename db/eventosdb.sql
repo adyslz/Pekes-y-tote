@@ -49,7 +49,7 @@ DROP TABLE IF EXISTS `cc409_pekes_tote`.`Estado_Evento` ;
 
 CREATE  TABLE IF NOT EXISTS `cc409_pekes_tote`.`Estado_Evento` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion` INT NULL ,
+  `descripcion` VARCHAR(50) NULL ,
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 

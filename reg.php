@@ -118,7 +118,7 @@
 				
 				<!-- form -->
 				<script type="text/javascript" src="js/form-validation.js"></script>
-				<form id="contactForm" action="#" method="get" >
+				<form id="contactForm" action="../../crud_evento.php" method="post" >
 					<fieldset>
 														
 						<p>
@@ -203,7 +203,8 @@
         <p><input type="button" value="Enviar" onClick="validaFormulario()"/> <span id="error" class="warning">Message</span>
         <input type="button" value="Borrar Datos"  onClick="resetForm()"  /><!-- <span id="error" class="warning">Message</span></p>-->
 					</fieldset>
-					
+		<input type="hidden" name="source" value="reg"/>
+		<input type="hidden" name="usuario" value="9"/>
 				</form>
 				<p id="sent-form-msg" class="success">Form data sent. Thanks for your comments.</p>
 				<!-- ENDS form -->
