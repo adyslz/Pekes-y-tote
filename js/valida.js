@@ -272,6 +272,7 @@ function validaFormulario(){
 	else{//si la descripcion no esta vacia
 		document.getElementById("errDesc").style.display = "none";
 		bandera[2]=1;
+		$('#comments').val(textoAValidar);
 		}	
 	if(document.getElementById("precio").value==''){
 		document.getElementById("errPrecio").style.display = "inline";

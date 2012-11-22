@@ -1,3 +1,27 @@
+<?php
+		session_start();
+		$_SESSION['referer'] = $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+
+		if(!isset($_SESSION['usuario']))
+		{
+			$usuario = array(
+	    		"id" => 7,
+	    		"nickname" => "loren"
+	    	);
+			$_SESSION['usuario']=$usuario;
+		}
+		$id=0;
+
+		if(!isset($_REQUEST['id_evento'])){
+			$id=1;
+		}else{
+			$id=$_REQUEST['id_evento'];
+		}
+
+		require_once("php/crud_evento.php");
+		$evento=read($id);
+?>
+
 <!doctype html>
 <html class="no-js">
 
@@ -140,7 +164,7 @@ jQuery(function($){
 					
 						<p><h2>Formulario de Edición de Eventos</h2></p>
 						
-						<h5>Estas editando el evento: Hackers & Founders</h5><br />
+						<?php echo '<h5>Estas editando el evento: '.$evento['nombre'].' </h5><br/>'; ?>
 				<!-- form -->
 				<script type="text/javascript" src="js/valida.js"></script>
 				<form id="contactForm" name="contactForm" method="get" action="#">
@@ -148,7 +172,7 @@ jQuery(function($){
 														
 						<p>
 							<label for="name" >Nombre del Evento</label>
-							<input name="name"  id="name" type="text" class="form-poshytip" title="Campo inhabilitado, no lo puedes modificar" disabled/>
+							<?php echo '<input name="name"  id="name" type="text" value="'.$evento['nombre'].'" class="form-poshytip" title="Campo inhabilitado, no lo puedes modificar" disabled/>'; ?>
 						</p>
                         
                   <p>
@@ -161,7 +185,7 @@ jQuery(function($){
                   
                   <p>
                   	<label for="descripcion">Descripcion del Evento</label>
-        					<textarea id="descripcion" name="descripcion" rows="5" cols="50" placeholder="Escribe aqui" required title="Ingresa la descripción del evento" class="form-poshytip"></textarea>
+        					<textarea id="descripcion"  name="descripcion" rows="5" cols="50" placeholder="Escribe aqui" required title="Ingresa la descripción del evento" class="form-poshytip"></textarea>
        					<div class="error" id="errDesc">
         						Ingresa una Descripcion
         					</div>
