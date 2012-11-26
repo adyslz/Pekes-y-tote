@@ -19,17 +19,21 @@
 		break;
 	}
 
-
-	function create(){
-		$filedir="/home/cc409/pekes-tote/www/data/img/";
-		$conexion=conexion(0);
+	function imagen($name,$usuarioId){
+		$filedir="/home/cc409/pekes-tote/www/data/img/$usuarioId/";
 		$tamanioPermitido = 200 * 1024;
 		$extensionesPermitidas = array("jpg", "jpeg", "gif", "png");
 		$explodeRes=explode(".", $_FILES["imagenEvento"]["name"]);
 		$extension = end($explodeRes);
-		if(!is_dir('/home/cc409/pekes-tote/www/data/img/'))
+		if(!is_dir($filedir)){
 	      mkdir($filedir, 0777);
-
+	      chmod($filedir,0777);//mkdir no respeta la configuracion del 0777
+	      $filedir=$filedir.'/'.$name.'/';
+	      if(!is_dir($filedir)){// no uso un mkdir true para poder asignarle 777 a las dos carpetas que se crean
+	      	mkdir($filedir, 0777);
+	      	chmod($filedir,0777);//mkdir no respeta la configuracion del 0777
+	      }
+	    }
 		if ((($_FILES["imagenEvento"]["type"] == "image/gif")
 	   	|| ($_FILES["imagenEvento"]["type"] == "image/jpeg")
 	   	|| ($_FILES["imagenEvento"]["type"] == "image/png")
@@ -46,31 +50,39 @@
 	    		else{
 					$rutaDestino = $filedir.$_FILES["imagenEvento"]["name"];
 	        		if(move_uploaded_file($_FILES["imagenEvento"]["tmp_name"],$rutaDestino)){
-						$name=$_REQUEST['name'];
-						$comment=$_REQUEST['comments'];
-						$precio=$_REQUEST['precio'];
-						$categoria=$_REQUEST['opcCat'];
-						$capacidad=$_REQUEST['capacidad'];
-						$fevento=date_create_from_format('j / m / Y',$_REQUEST['date']);
-						$feventoStr=$fevento->format('Y-m-d H:i:s');
-						$fcreacion=new DateTime();
-						$fcreacionStr=$fcreacion->format('Y-m-d H:i:s');
-						$usuario=$_SESSION['usuario'];
-						$id_usuario=$usuario['id'];
-						$query="INSERT INTO Evento(imagen,usuario,nombre,descripcion,precio,categoria,capacidad,fecha_evento,fecha_creacion,estado)
-							VALUES ('$rutaDestino',$id_usuario,'$name','$comment','$precio','$categoria','$capacidad','$feventoStr','$fcreacionStr',1)";
-			
-						$conexion->query($query);
-						$conexion->close();
-						header("Location: ../index.php");
+						return $rutaDestino;
 					}
-					else
+					else{
 						echo 'Problema con la movida';
+					}
 	    		}
 	  		}
 		}
 		else{
 		  echo "Archivo inválido";
+		}
+	}
+
+	function create(){
+		$usuario=$_SESSION['usuario'];
+		$name=$_REQUEST['name'];
+		$rutaDestino=imagen($name,$usuario['id']);
+		if(!is_null($rutaDestino)){
+			$conexion=conexion(0);
+			$comment=$_REQUEST['comments'];
+			$precio=$_REQUEST['precio'];
+			$categoria=$_REQUEST['opcCat'];
+			$capacidad=$_REQUEST['capacidad'];
+			$fevento=date_create_from_format('j / m / Y',$_REQUEST['date']);
+			$feventoStr=$fevento->format('Y-m-d H:i:s');
+			$fcreacion=new DateTime();
+			$fcreacionStr=$fcreacion->format('Y-m-d H:i:s');
+			$id_usuario=$usuario['id'];
+			$query="INSERT INTO Evento(imagen,usuario,nombre,descripcion,precio,categoria,capacidad,fecha_evento,fecha_creacion,estado)
+				VALUES ('$rutaDestino',$id_usuario,'$name','$comment','$precio','$categoria','$capacidad','$feventoStr','$fcreacionStr',1)";
+			$conexion->query($query);
+			$conexion->close();
+			header("Location: ../index.php");
 		}
 	}
 
@@ -84,7 +96,11 @@
 	}
 
 	function update(){
+		$id=$_REQUEST['idEventoToUpdate'];
 
+		if(!empty($_FILES['imagenEvento']['name'])){
+			
+		}
 	}
 
 	function delete(){ 
@@ -94,7 +110,9 @@
 	function readAll(){
 
 	}
-
+//1 si es llamada de include en un  archivo directo en la raiz
+//0 si es de php supongo que deberia de cambiar para mandarle la direccion del archivo inc
+//tote
 	function conexion($val){
 		if($val){
 			require_once("../data/dbData.inc");

@@ -12,10 +12,10 @@
 		}
 		$id=0;
 
-		if(!isset($_REQUEST['id_evento'])){
+		if(!isset($_REQUEST['idEventoToUpdate'])){
 			$id=1;
 		}else{
-			$id=$_REQUEST['id_evento'];
+			$id=$_REQUEST['idEventoToUpdate'];
 		}
 
 		require_once("php/crud_evento.php");
@@ -148,6 +148,7 @@ jQuery(function($){
 							nicEditors.findEditor('descripcion').setContent('".$evento['descripcion']."');
 							\$('#precio').attr('value','".$evento['precio']."');
 							\$('#name').attr('value','".$evento['nombre']."');
+							\$('#idEventoToUpdate').attr('value','".$id."');
 							\$('#imagen').attr('src','".$img."');
 							if(".$evento['capacidad']."=='ilimitada'){
 								document.contactForm.capacidad[0].checked=true;
@@ -193,8 +194,8 @@ jQuery(function($){
 						
 						<?php echo '<h5>Estas editando el evento: '.$evento['nombre'].' </h5><br/>'; ?>
 				<!-- form -->
-				<script type="text/javascript" src="js/valida.js"></script>
-				<form id="contactForm" name="contactForm" action="php/crud_evento.php" method="post" enctype="multipart/form-data"
+				<script type="text/javascript" src="js/valida.js"></script><!-- php/crud_evento.php" -->
+				<form id="contactForm" name="contactForm" action="../../prueba.php" method="post" enctype="multipart/form-data"
 					<fieldset>
 														
 						<p>
@@ -268,7 +269,9 @@ jQuery(function($){
         <input type="button" value="Borrar Datos" onClick="resetForm();"/></p> 
         <!--<span id="error" class="warning">Message</span></p>-->
 					</fieldset>
-					
+		<input type="hidden" name="crud_action" value="modify"/>
+		<input id="idEventoToUpdate" type="hidden" name="idEventoToUpdate"/>
+
 				</form>
 				<!--<p id="sent-form-msg" class="success">Form data sent. Thanks for your comments.</p>-->
 				<!-- ENDS form -->
