@@ -139,7 +139,8 @@ jQuery(function($){
 	
 	<body class="page" onLoad="">
 		<?php
-
+			$date=date_create_from_format('Y-m-d',$evento['fecha_evento']);
+			$dateStr=$date->format('j / m / Y');
 			$img = "http://alanturing.cucei.udg.mx/pekes-tote/data/img/". end(split('/',$evento['imagen']));
 			echo "
 				<div id='php_erasable'>
@@ -148,17 +149,19 @@ jQuery(function($){
 							nicEditors.findEditor('descripcion').setContent('".$evento['descripcion']."');
 							\$('#precio').attr('value','".$evento['precio']."');
 							\$('#name').attr('value','".$evento['nombre']."');
+							\$('#nameHidden').attr('value','".$evento['nombre']."');
 							\$('#idEventoToUpdate').attr('value','".$id."');
 							\$('#imagen').attr('src','".$img."');
-							if(".$evento['capacidad']."=='ilimitada'){
+							if('".$evento['capacidad']."'=='ilimitada'){
 								document.contactForm.capacidad[0].checked=true;
 							}else{
 								document.contactForm.capacidad[1].checked=true;
 								\$('#cap').attr('value','".$evento['capacidad']."');
+								\$('#cap').attr('disabled','');
 
 							}
 							document.getElementById('opcionesCat').selectedIndex='".$evento['categoria']."';
-							\$('#datepicker').attr('value','".$evento['fecha_creacion']."')
+							\$('#datepicker').attr('value','".$dateStr."')
 							\$('#php_erasable').remove();
 						}
 					</script>
@@ -195,21 +198,19 @@ jQuery(function($){
 						<?php echo '<h5>Estas editando el evento: '.$evento['nombre'].' </h5><br/>'; ?>
 				<!-- form -->
 				<script type="text/javascript" src="js/valida.js"></script><!-- php/crud_evento.php" -->
-				<form id="contactForm" name="contactForm" action="../../prueba.php" method="post" enctype="multipart/form-data"
+				<form id="contactForm" name="contactForm" action="php/crud_evento.php" method="post" enctype="multipart/form-data"
 					<fieldset>
 														
 						<p>
 							<label for="name" >Nombre del Evento</label>
-							<input name="name"  id="name" type="text"  class="form-poshytip" title="Campo inhabilitado, no lo puedes modificar" disabled/>
+							<input id="name" type="text" name="name" class="form-poshytip" title="Campo inhabilitado, no lo puedes modificar" disabled/>
+							<input id="nameHidden" type="hidden" name="nameHidden">
 						</p>
                         
                   <p>
                   	<label for="imagenEvento">Imagen del Evento</label>
                   	<img id="imagen"  alt="imagen de evento" width="255" height="300">
         					<input type="file" id="imagenEvento" name="imagenEvento"  accept="image/*" title="Ingresa una imagen" class="form-poshytip"/>
-        					<div class="error" id="errImagen">
-        						Aun no has seleccionado una imagen
-       					</div>
                   </p>  
                   
                   <p>
@@ -256,7 +257,7 @@ jQuery(function($){
                   
                   <p>
 							<label for="datepicker">Fecha del Evento</label>
-        					<input id="datepicker" type="text" name="datepicker" readonly="readonly" placeholder="Elige la fecha" title="Selecciona la fecha de tu evento" class="form-poshytip"/>
+        					<input id="datepicker" type="text" name="date" readonly="readonly" placeholder="Elige la fecha" title="Selecciona la fecha de tu evento" class="form-poshytip"/>
         					<div class="error" id="errFecha">
         						La fecha debe ser posterior a la actual
         					</div>

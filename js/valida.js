@@ -3,7 +3,7 @@ function hab(){
 		document.getElementById("cap").disabled ="";
 		document.getElementById("errCap2").style.display ="inline";
 		}
-	else{
+	else{  
 		document.getElementById("cap").disabled ="disable";
 		document.getElementById("cap").value ="";
 		document.getElementById("errCap2").style.display ="none";
@@ -355,7 +355,7 @@ function validaFormulario(){
 					}	
 			else{
 				//si el mes es anterior es error
-				if(temp[1]<mes){
+				if(temp2[1]<mes){
 					document.getElementById("errFecha").style.display ="inline";
 					bandera[7]=0;
 					}
@@ -394,7 +394,13 @@ function validaEdicion(){
 	var anio=fecha.getFullYear();
 
 	//valida input imagen No siempre se modifica la imagen.
-/*	if(document.contactForm.imagenEvento.value==''){
+/*	
+			tmb quite el div del error ya que nunca se puede no haber 
+			seleccionado la imagen
+			<div class="error" id="errImagen">
+        						Aun no has seleccionado una imagen
+       					</div>
+	if(document.contactForm.imagenEvento.value==''){
 		document.getElementById("errImagen").style.display="inline";
 		bandera[1]=0;
 		}
@@ -403,9 +409,12 @@ function validaEdicion(){
 		bandera[1]=1;
 		}
 */ 
+//!!!!!!!BORRAME SI DESCOMENTAS LO DE ARRIBA
+bandera[1]=1;//creo que se ocupa 
+//!!!!!!!BORRAME SI DESCOMENTAS LO DE ARRIBA
 	//valida descripcion evento
 	var nicE = new nicEditors.findEditor('descripcion');
-	var textoAValidar = nicE.getContent()
+	var textoAValidar = nicE.getContent();
 	if(textoAValidar==0||textoAValidar=='<br>'){
 		document.getElementById("errDesc").style.display = "inline";
 		bandera[2]=0;
@@ -413,6 +422,8 @@ function validaEdicion(){
 	else{
 		document.getElementById("errDesc").style.display = "none";
 		bandera[2]=1;
+		$('#descripcion').val(textoAValidar);
+
 		}	
 	
 	//valida precio	
@@ -487,7 +498,7 @@ function validaEdicion(){
 					}	
 			else{
 				//si el mes es anterior es error
-				if(temp[1]<mes){
+				if(temp2[1]<mes){
 					document.getElementById("errFecha").style.display ="inline";
 					bandera[6]=0;
 					}
