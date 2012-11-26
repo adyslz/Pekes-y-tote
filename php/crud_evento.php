@@ -1,6 +1,7 @@
 <?php
 	error_reporting(E_ERROR);
 	$create_permited=array("localhost:8888/Github/Pekes-y-tote/reg.php","alanturing.cucei.udg.mx/pekes-tote/reg.php");
+	$update_permited=array("localhost:8888/Github/Pekes-y-tote/edita.php","alanturing.cucei.udg.mx/pekes-tote/edita.php");
 	session_start();
 	$referer=$_SESSION['referer'];
 	$action=$_REQUEST["crud_action"];
@@ -11,17 +12,22 @@
 			create();
 			}
 		break;
+		case "update":
+			if(in_array($referer, $update_permited)){
+			update();
+			}
+		break;
 	}
 
 
 	function create(){
-		$filedir="/home/cc409/pekes-tote/data/img/";
+		$filedir="/home/cc409/pekes-tote/www/data/img/";
 		$conexion=conexion(0);
 		$tamanioPermitido = 200 * 1024;
 		$extensionesPermitidas = array("jpg", "jpeg", "gif", "png");
 		$explodeRes=explode(".", $_FILES["imagenEvento"]["name"]);
 		$extension = end($explodeRes);
-		if(!is_dir('/home/cc409/pekes-tote/data/img/'))
+		if(!is_dir('/home/cc409/pekes-tote/www/data/img/'))
 	      mkdir($filedir, 0777);
 
 		if ((($_FILES["imagenEvento"]["type"] == "image/gif")

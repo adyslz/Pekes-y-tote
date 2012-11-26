@@ -393,8 +393,8 @@ function validaEdicion(){
 	var mes=fecha.getMonth()+1;
 	var anio=fecha.getFullYear();
 
-	//valida input imagen
-	if(document.contactForm.imagenEvento.value==''){
+	//valida input imagen No siempre se modifica la imagen.
+/*	if(document.contactForm.imagenEvento.value==''){
 		document.getElementById("errImagen").style.display="inline";
 		bandera[1]=0;
 		}
@@ -402,7 +402,7 @@ function validaEdicion(){
 		document.getElementById("errImagen").style.display="none";
 		bandera[1]=1;
 		}
-		
+*/ 
 	//valida descripcion evento
 	var nicE = new nicEditors.findEditor('descripcion');
 	var textoAValidar = nicE.getContent()

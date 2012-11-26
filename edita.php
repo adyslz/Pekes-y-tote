@@ -194,7 +194,7 @@ jQuery(function($){
 						<?php echo '<h5>Estas editando el evento: '.$evento['nombre'].' </h5><br/>'; ?>
 				<!-- form -->
 				<script type="text/javascript" src="js/valida.js"></script>
-				<form id="contactForm" name="contactForm" method="get" action="../../prueba.php">
+				<form id="contactForm" name="contactForm" action="php/crud_evento.php" method="post" enctype="multipart/form-data"
 					<fieldset>
 														
 						<p>
