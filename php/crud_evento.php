@@ -187,12 +187,36 @@
 		}
 	}
 
-	function delete(){ 
-
+	function delete($id){ 
+		$conexion=conexion();
+		$str="DELETE FROM
+				Evento
+			  WHERE
+			  	id=$id";
+		if (!$conexion->query($str)) {
+        	printf("Error: %s\n", $conexion->error);
+        	$conexion->close();
+    	}else{
+    		$result=$conexion->affected_rows;
+    		$conexion->close();
+    		return $result;
+    	}	
 	}
 
 	function readAll(){
-
+		$conexion=conexion();
+		$str="SELECT * FROM Evento WHERE 1";
+		if (!$resultSet=$conexion->query($str)) {
+        	printf("Error: %s\n", $conexion->error);
+        	$conexion->close();
+    	}else{
+			if($resultSet->num_rows>=1){
+		 		while($fila = $resultSet -> fetch_assoc())
+		 			$result[]=$fila;    		
+	 			$conexion->close();
+    			return $result;
+    		}	
+		}
 	}
 //1 si es llamada de include en un  archivo directo en la raiz
 //0 si es de php supongo que deberia de cambiar para mandarle la direccion del archivo inc
