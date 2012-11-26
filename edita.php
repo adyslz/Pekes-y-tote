@@ -139,6 +139,8 @@ jQuery(function($){
 	
 	<body class="page" onLoad="">
 		<?php
+
+			$img = "http://alanturing.cucei.udg.mx/pekes-tote/data/img/". end(split('/',$evento['imagen']));
 			echo "
 				<div id='php_erasable'>
 					<script type='text/javascript'>
@@ -146,7 +148,7 @@ jQuery(function($){
 							nicEditors.findEditor('descripcion').setContent('".$evento['descripcion']."');
 							\$('#precio').attr('value','".$evento['precio']."');
 							\$('#name').attr('value','".$evento['nombre']."');
-							\$('#imagen').attr('src','".$evento['imagen']."');
+							\$('#imagen').attr('src','".$img."');
 							if(".$evento['capacidad']."=='ilimitada'){
 								document.contactForm.capacidad[0].checked=true;
 							}else{
@@ -192,7 +194,7 @@ jQuery(function($){
 						<?php echo '<h5>Estas editando el evento: '.$evento['nombre'].' </h5><br/>'; ?>
 				<!-- form -->
 				<script type="text/javascript" src="js/valida.js"></script>
-				<form id="contactForm" name="contactForm" method="get" action="#">
+				<form id="contactForm" name="contactForm" method="get" action="../../prueba.php">
 					<fieldset>
 														
 						<p>
