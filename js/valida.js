@@ -263,7 +263,7 @@ function validaFormulario(){
 		bandera[1]=1;
 		}
 	var nicE = new nicEditors.findEditor('comments');
-	var textoAValidar = nicE.getContent()
+	var textoAValidar = nicE.getContent();
 
 	if(textoAValidar==0||textoAValidar=='<br>'){
 		document.getElementById("errDesc").style.display = "inline";

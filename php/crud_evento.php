@@ -1,12 +1,11 @@
 <?php
-//	error_reporting(E_ERROR);
+	error_reporting(E_ERROR);
 	$create_permited=array("localhost:8888/Github/Pekes-y-tote/reg.php","alanturing.cucei.udg.mx/pekes-tote/reg.php");
 	session_start();
 	$referer=$_SESSION['referer'];
-
 	$action=$_REQUEST["crud_action"];
+	//error_log("aasfd");
 	switch($action){
-		//error_log("aasfd")
 		case "create":
 			if(in_array($referer, $create_permited)){
 			create();

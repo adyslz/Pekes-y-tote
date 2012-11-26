@@ -130,6 +130,7 @@ jQuery(function($){
 
         $(document).ready(function() {
            $("#datepicker").datepicker();
+           php_erasable();
         });
     </script>
 
@@ -137,6 +138,30 @@ jQuery(function($){
 	
 	
 	<body class="page" onLoad="">
+		<?php
+			echo "
+				<div id='php_erasable'>
+					<script type='text/javascript'>
+						function php_erasable(){
+							nicEditors.findEditor('descripcion').setContent('".$evento['descripcion']."');
+							\$('#precio').attr('value','".$evento['precio']."');
+							\$('#name').attr('value','".$evento['nombre']."');
+							\$('#imagen').attr('src','".$evento['imagen']."');
+							if(".$evento['capacidad']."=='ilimitada'){
+								document.contactForm.capacidad[0].checked=true;
+							}else{
+								document.contactForm.capacidad[1].checked=true;
+								\$('#cap').attr('value','".$evento['capacidad']."');
+
+							}
+							document.getElementById('opcionesCat').selectedIndex='".$evento['categoria']."';
+							\$('#datepicker').attr('value','".$evento['fecha_creacion']."')
+							\$('#php_erasable').remove();
+						}
+					</script>
+				</div>
+			";	
+		?>
 	
 		<!-- HEADER -->
 		<header>
@@ -172,11 +197,12 @@ jQuery(function($){
 														
 						<p>
 							<label for="name" >Nombre del Evento</label>
-							<?php echo '<input name="name"  id="name" type="text" value="'.$evento['nombre'].'" class="form-poshytip" title="Campo inhabilitado, no lo puedes modificar" disabled/>'; ?>
+							<input name="name"  id="name" type="text"  class="form-poshytip" title="Campo inhabilitado, no lo puedes modificar" disabled/>
 						</p>
                         
                   <p>
                   	<label for="imagenEvento">Imagen del Evento</label>
+                  	<img id="imagen"  alt="imagen de evento" width="255" height="300">
         					<input type="file" id="imagenEvento" name="imagenEvento"  accept="image/*" title="Ingresa una imagen" class="form-poshytip"/>
         					<div class="error" id="errImagen">
         						Aun no has seleccionado una imagen
@@ -202,7 +228,7 @@ jQuery(function($){
                   <p>
 							<label for="capacidad">Capacidad</label>
         					<input type="radio" name="capacidad" value="ilimitada" onClick="hab2()"/>Ilimitada
-       					<input type="radio" name="capacidad" value="limitada" onClick="hab2()"/>Limitada
+       						<input type="radio" name="capacidad" value="limitada" onClick="hab2()"/>Limitada
         					<input type="text" id="cap" name="capacidad" disabled="disabled" title="Ingresa la capacidad de tu evento" class="form-poshytip"/>
         					<div class="error" id="errCap">
  								Selecciona si es capaciad Limitada o Ilimitada      
