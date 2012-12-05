@@ -1,7 +1,4 @@
 <?php
-	if(!isset($_SESSION)) {
-     session_start();
-	}
 	$_SESSION['referer'] = $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 
 	$log="";
@@ -9,7 +6,7 @@
 		$log='<li><a href="secciones/login.php?wipe=1">Logout</a></li>';
 	}
 	else{
-		$log='<li><a href="secciones/login.php?authenticate=1&amp;force=1">Login</a></li>';
+		$log='<li><a href="secciones/login.php?authenticate=1&force=1">Login</a></li>';
 	}
 ?>
 

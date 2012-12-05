@@ -115,11 +115,10 @@
 	}
 
 	function create(){
-		$usuario=addslashes($_SESSION['usuario']);
+		$id_usuario=$_SESSION['usuario']['id'];
 		$name=addslashes($_REQUEST['name']);
-		$rutaDestino=imagen($name,$usuario['id']);
+		$rutaDestino=imagen($name,$id_usuario);
 		if(!is_null($rutaDestino)){
-			
 			$comment=addslashes($_REQUEST['comments']);
 			$precio=addslashes($_REQUEST['precio']);
 			$categoria=addslashes($_REQUEST['opcCat']);
@@ -128,10 +127,9 @@
 			$feventoStr=$fevento->format('Y-m-d H:i:s');
 			$fcreacion=new DateTime();
 			$fcreacionStr=$fcreacion->format('Y-m-d H:i:s');
-			$id_usuario=$usuario['id'];
-			insert("INSERT INTO Evento(imagen,usuario,nombre,descripcion,precio,categoria,capacidad,fecha_evento,fecha_creacion,estado)
-				VALUES ('$rutaDestino',$id_usuario,'$name','$comment','$precio','$categoria','$capacidad','$feventoStr','$fcreacionStr',1)");
-			
+			$query="INSERT INTO Evento(imagen,usuario,nombre,descripcion,precio,categoria,capacidad,fecha_evento,fecha_creacion,estado)
+				VALUES ('$rutaDestino',$id_usuario,'$name','$comment','$precio','$categoria','$capacidad','$feventoStr','$fcreacionStr',1)";
+			insert($query);
 			header("Location: ../index.php");
 		}
 	}

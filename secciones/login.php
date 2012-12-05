@@ -26,6 +26,7 @@
 
 require '../php/tmhOAuth.php';
 require '../php/tmhUtilities.php';
+require '../php/crud_usuario.php';
 $tmhOAuth = new tmhOAuth(array(
   'consumer_key'    => 'e92aEkLobmv5rEIUVFqUA',
   'consumer_secret' => 'h7LvbMNMYOrwV5ZKrTMJEpKZbSZiU4ldTvUGc6qw',
@@ -41,8 +42,19 @@ function outputError($tmhOAuth) {
 
 // reset request?
 if ( isset($_REQUEST['wipe'])) {
+  unset($_SESSION['access_token']);
+  $_SESSION = array();
+  if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+    setcookie("auth_token_session","",time()-10);
+  }
   session_destroy();
-  header("location: http://".$referer);
+
+  header("location: /pekes-tote/index.php");
 
 // already got some credentials stored?
 } elseif ( isset($_SESSION['access_token']) ) {
@@ -52,28 +64,17 @@ if ( isset($_REQUEST['wipe'])) {
   $code = $tmhOAuth->request('GET', $tmhOAuth->url('1/account/verify_credentials'));
   if ($code == 200) {
     $resp = json_decode($tmhOAuth->response['response']);
+    $nickname=$resp->screen_name;
+    $imagen=$resp->profile_image_url;
+    $usuario=array(
+        "id"=>checkInsert($nickname,$imagen),
+        "nickname"=>$nickname);
+      $_SESSION['usuario']=$usuario;
     header("location: http://".$referer);
   } else {
     outputError($tmhOAuth);
   }
 // we're being called back by Twitter
-} elseif (isset($_REQUEST['oauth_verifier'])) {
-  $tmhOAuth->config['user_token']  = $_SESSION['oauth']['oauth_token'];
-  $tmhOAuth->config['user_secret'] = $_SESSION['oauth']['oauth_token_secret'];
-
-  $code = $tmhOAuth->request('POST', $tmhOAuth->url('oauth/access_token', ''), array(
-    'oauth_verifier' => $_REQUEST['oauth_verifier']
-  ));
-
-  if ($code == 200) {
-    $_SESSION['access_token'] = $tmhOAuth->extract_params($tmhOAuth->response['response']);
-    unset($_SESSION['oauth']);
-    echo "true";
-    header("location: http://".$referer);
-  } else {
-    outputError($tmhOAuth);
-  } 
-// start the OAuth dance
 } elseif ( isset($_REQUEST['authenticate']) || isset($_REQUEST['authorize']) ) {
   $callback = isset($_REQUEST['oob']) ? 'oob' : $here;
 
@@ -92,12 +93,29 @@ if ( isset($_REQUEST['wipe'])) {
   if ($code == 200) {
     $_SESSION['oauth'] = $tmhOAuth->extract_params($tmhOAuth->response['response']);
     $method = isset($_REQUEST['authenticate']) ? 'authenticate' : 'authorize';
-    $force  = isset($_REQUEST['force']) ? '&force_login=1' : '';
+    $force  = isset($_REQUEST['force']) ? '&force_login=true' : '';
     $authurl = $tmhOAuth->url("oauth/{$method}", '') .  "?oauth_token={$_SESSION['oauth']['oauth_token']}{$force}";
     header("location:". $authurl);
   } else {
     outputError($tmhOAuth);
   }
+} elseif (isset($_REQUEST['oauth_verifier'])) {
+  $tmhOAuth->config['user_token']  = $_SESSION['oauth']['oauth_token'];
+  $tmhOAuth->config['user_secret'] = $_SESSION['oauth']['oauth_token_secret'];
+
+  $code = $tmhOAuth->request('POST', $tmhOAuth->url('oauth/access_token', ''), array(
+    'oauth_verifier' => $_REQUEST['oauth_verifier']
+  ));
+
+  if ($code == 200) {
+    $_SESSION['access_token'] = $tmhOAuth->extract_params($tmhOAuth->response['response']);
+    unset($_SESSION['oauth']);
+    $resp = json_decode($tmhOAuth->response['response']);
+    header("Location: {$here}");
+  } else {
+    outputError($tmhOAuth);
+  } 
+// start the OAuth dance
 }
 
 ?>
