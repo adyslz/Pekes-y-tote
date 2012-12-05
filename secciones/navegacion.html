@@ -1,6 +1,22 @@
+<?php
+	if(!isset($_SESSION)) {
+     session_start();
+	}
+	$_SESSION['referer'] = $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+
+	$log="";
+	if(isset($_SESSION['access_token'])){
+		$log='<li><a href="secciones/login.php?wipe=1">Logout</a></li>';
+	}
+	else{
+		$log='<li><a href="secciones/login.php?authenticate=1&amp;force=1">Login</a></li>';
+	}
+?>
+
 <ul id="nav" class="sf-menu">
 		<li><a href="index.php">Inicio</a></li>
 		<li><a href="cal.php">Calendario</a></li>
 		<li><a href="reg.php">Enviar Evento</a></li>
+		<?php echo $log;?>
 </ul>
  <div id="combo-holder"></div>

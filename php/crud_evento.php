@@ -18,6 +18,12 @@
 			modify();
 			}
 		break;
+		case "delete":
+			if(in_array($referer, $modify_permited)){
+			delete();
+			}
+		break;
+		
 	}
 
 	function imagen($name,$usuarioId){
