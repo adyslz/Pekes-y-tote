@@ -182,7 +182,8 @@
     <article>
         <div class="containerBox">
             <div class="box1">
-                <h1>Eventos Pendientes</h1>
+                <h1>Eventos Pendientes  <a href="php/creaPDF.php"><img src="img/pdf.jpeg"/ width="50px" height="50px"></a>               
+            </h1>
                 <div class="eventos">
                     <?php echo $pendientesStr;?>
                 </div>
