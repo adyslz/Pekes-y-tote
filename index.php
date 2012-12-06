@@ -1,5 +1,39 @@
 <?php
-	session_start();	
+	require_once("php/crud_usuario.php");
+    session_start();
+    $_SESSION['referer'] = $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+	$query="	SELECT Evento.*,
+						Usuario.id as userid
+				FROM `Evento`
+				LEFT JOIN Usuario ON Evento.usuario = Usuario.id
+				where estado=1
+				ORDER BY id DESC
+				LIMIT 10;";
+
+    $datos=select($query); 
+    $eventList=""; 
+    $eventThumb="";  
+    $i=0;
+ 	foreach($datos as $dato)
+    {
+    	$img = 'http://alanturing.cucei.udg.mx/pekes-tote/data/img/'.$dato['userid'].'/'.$dato['nombre']."/". end(split('/',$dato['imagen']));
+
+    	 $eventList=$eventList.'
+			<li class="piccontainer">
+	         	<img src="'.$img.'" title="'.$dato['nombre'].'" alt="alt" />           
+	          <div class="slider-description">
+	            <h4>'.$dato['nombre'].'</h4>
+	            <p>'.$dato['descripcion'].'
+	            <a class="link" href="#abajo" data-filter=".web">Read more </a>
+           		</p>
+	         </div>
+	    </li>
+    	 ';
+    	 $eventThumb=$eventThumb.'
+	      <li class="piccontainer"><img src="'.$img.'" alt="alt" /></li>
+    	 ';
+
+    }
 ?>
 <!doctype html>
 <html class="no-js">
@@ -77,7 +111,14 @@
 		<script src="js/jquery.flexslider.js"></script>
 
 	</head>
-	
+	<script type="text/javascript">
+	$(window).load(function() {
+    $('.piccontainer').find('img').each(function() {
+        var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
+        $(this).addClass(imgClass);
+    })
+})
+	</script>
 	
 	<body class="home">
 	
@@ -101,76 +142,7 @@
 					<!-- slider content --> 
 					<div class="main-slider-content" >
 					<ul class="sliders-wrap-inner">
-					    <li>
-					          <img src="img/dummies/slides/01.png" title="" alt="alt" />           
-					          <div class="slider-description">
-					            <h4>Evento 1</h4>
-					            <p>Informacion del Eventos y todo ese show
-					            <a class="link" href="#abajo" data-filter=".web">Read more </a>
-                           		</p>
-					         </div>
-					    </li>
-					    
-					    <li>
-					          <img src="img/dummies/slides/02.png" title="" alt="alt" />           
-					          <div class="slider-description">
-					            <h4>Evento 2</h4>
-					            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est...
-					            <a class="link" href="#">Read more </a>
-					            </p>
-					         </div>
-					    </li>
-					    
-					    <li>
-					          <img src="img/dummies/slides/03.png" title="" alt="alt" />           
-					          <div class="slider-description">
-					            <h4>Evento 3</h4>
-					            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est...
-					            <a class="link" href="#">Read more </a>
-					            </p>
-					         </div>
-					    </li>
-					    
-					    <li>
-					          <img src="img/dummies/slides/04.png" title="" alt="alt" />           
-					          <div class="slider-description">
-					            <h4>Evento 4</h4>
-					            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est...
-					            <a class="link" href="#">Read more </a>
-					            </p>
-					         </div>
-					    </li>
-					    
-					    <li>
-					          <img src="img/dummies/slides/05.png" title="" alt="alt" />           
-					          <div class="slider-description">
-					            <h4>Evento 5</h4>
-					            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est...
-					            <a class="link" href="#">Read more </a>
-					            </p>
-					         </div>
-					    </li>
-					    
-					    <li>
-					          <img src="img/dummies/slides/06.png" title="" alt="alt" />           
-					          <div class="slider-description">
-					            <h4>Evento 6</h4>
-					            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est...
-					            <a class="link" href="#">Read more </a>
-					            </p>
-					         </div>
-					    </li>
-					    
-					    <li>
-					          <img src="img/dummies/slides/07.png" title="" alt="alt" />           
-					          <div class="slider-description">
-					            <h4>Evento 7</h4>
-					            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est...
-					            <a class="link" href="#">Read more </a>
-					            </p>
-					         </div>
-					    </li>
-					    
+					   	<?php echo $eventList; ?> 
 					  </ul>  	
 					</div>
 					<!-- ENDS slider content --> 
@@ -179,13 +151,7 @@
 					<div class="navigator-content">
 					  <div class="navigator-wrapper">
 					        <ul class="navigator-wrap-inner">
-					           <li><img src="img/dummies/slides/01_thumb.png" alt="alt" /></li>
-					           <li><img src="img/dummies/slides/02_thumb.png" alt="alt" /></li>
-					           <li><img src="img/dummies/slides/03_thumb.png" alt="alt" /></li>
-					           <li><img src="img/dummies/slides/04_thumb.png" alt="alt" /></li>
-					           <li><img src="img/dummies/slides/05_thumb.png" alt="alt" /></li>
-					           <li><img src="img/dummies/slides/06_thumb.png" alt="alt" /></li>
-					           <li><img src="img/dummies/slides/07_thumb.png" alt="alt" /></li>
+		  					   	<?php echo $eventThumb; ?> 
 					        </ul>
 					  </div>
 					  <div class="button-next">Next</div>
@@ -198,11 +164,11 @@
 			</div>
 		</header>
 		<!-- ENDS HEADER -->
-		
-		<!-- MAIN -->
 		<div id="main">
+		<!-- MAIN 
+		
 			<div class="wrapper cf">
-			<!-- featured -->
+			<!-- featured 
             <a id="abajo"></a>
 			<div class="home-featured">
 			
@@ -214,7 +180,7 @@
 					<li><a href="#" data-filter=".photo">Other2</a></li>
 				</ul>
 				
-				<!-- Filter container -->
+				<!-- Filter container 
                 
 				<div id="filter-container" class="cf">
                     <figure class="photo" style="width:450px">
@@ -252,24 +218,24 @@
             (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
         }());
         </script>
-        <!--<a href="http://foo.com/bar.html#disqus_thread">Link</a>-->
+        <!--<a href="http://foo.com/bar.html#disqus_thread">Link</a>--
         </div>
 						<figcaption>
 							<a href="#" ><h3 class="heading">Comentarios</h3></a>
                             </figcaption>
 					</figure>
-				</div><!-- ENDS Filter container -->
+				</div><!-- ENDS Filter container --
 				
 			</div>
-			<!-- ENDS featured -->
+			<!-- ENDS featured --
 			
 			
 			
 			
-			</div><!-- ENDS WRAPPER -->
-		</div>
-		<!-- ENDS MAIN -->
+			</div><!-- ENDS WRAPPER --
 		
+		 --ENDS MAIN -->
+		</div>
 		<?php
 		  include("secciones/footer.html");
 		?>

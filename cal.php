@@ -1,3 +1,45 @@
+<?php
+   	require_once("php/crud_usuario.php");
+    session_start();
+    $_SESSION['referer'] = $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+	$query="SELECT 
+    		Evento.id, 
+    		Evento.nombre, 
+    		Evento.descripcion, 
+    		Evento.imagen, 
+    		Evento.fecha_evento
+		FROM Evento
+		WHERE Evento.estado =1";
+
+    $datos=select($query); 
+    $eventList="";   
+    $i=0;
+ 	foreach($datos as $dato)
+    {
+		try {
+    		$date = new DateTime($dato["fecha_evento"]);
+		} catch (Exception $e) {
+    		echo $e->getMessage();
+    		exit(1);
+		}
+		$time=getdate($date->getTimestamp());
+    	if($i==0){
+    		$i=1;
+    	}else{
+			$eventList=$eventList.',';
+	    }
+	    $mes=$time['mon']-1;
+	    $eventList=$eventList.PHP_EOL.'
+	    	{
+	    		id:'.$dato['id'].',
+	    		title:\''.$dato['nombre'].'\',
+	    		start: new Date('.$time['year'].','.$mes.','.$time['mday'].'),
+	    		allDay:true
+	    	}';
+    }
+
+ ?>
+
 <!doctype html>
 <html class="no-js">
 
@@ -82,13 +124,7 @@
 <script type='text/javascript' src='js/fullcalendar.min.js'></script>
 <script type='text/javascript'>
 
-	$(document).ready(function() {
-	
-		var date = new Date();
-		var d = date.getDate();
-		var m = date.getMonth();
-		var y = date.getFullYear();
-		
+	$(document).ready(function() {	
 		$('#calendar').fullCalendar({
 			theme: true,
 			header: {
@@ -98,50 +134,7 @@
 			},
 			editable: true,
 			events: [
-				{
-					title: 'All Day Event',
-					start: new Date(y, m, 1)
-				},
-				{
-					title: 'Long Event',
-					start: new Date(y, m, d-5),
-					end: new Date(y, m, d-2)
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: new Date(y, m, d-3, 16, 0),
-					allDay: false
-				},
-				{
-					id: 999,
-					title: 'Cotorreo Locochon',
-					start: new Date(y, m, d+4, 16, 0),
-					allDay: false
-				},
-				{
-					title: 'Peda Loca',
-					start: new Date(y, m, d, 10, 30),
-					allDay: false
-				},
-				{
-					title: 'Hechar Lio',
-					start: new Date(y, m, d, 12, 0),
-					end: new Date(y, m, d, 14, 0),
-					allDay: false
-				},
-				{
-					title: 'Marcarle al Peor es Nada',
-					start: new Date(y, m, d+1, 19, 0),
-					end: new Date(y, m, d+1, 22, 30),
-					allDay: false
-				},
-				{
-					title: 'Esto es un Link',
-					start: new Date(y, m, 28),
-					end: new Date(y, m, 29),
-					url: 'http://google.com/'
-				}
+				<?php echo $eventList;?>
 			]
 		});
 		
