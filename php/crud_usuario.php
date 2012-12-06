@@ -25,7 +25,7 @@
 	 		$conexion->close();
 	 		return $datos[0]['id'];
 	 	}else{
-	 		echo insert("INSERT INTO Usuario(nickname,imagen,tipo)
+	 		return insert("INSERT INTO Usuario(nickname,imagen,tipo)
 	 					 VALUES	('$name','$imagen',2);");
 	 	}
 

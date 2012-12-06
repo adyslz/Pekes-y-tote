@@ -1,12 +1,24 @@
 <?php
+	require_once("php/crud_usuario.php");
 	$_SESSION['referer'] = $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 
 	$log="";
 	if(isset($_SESSION['access_token'])){
-		$log='<li><a href="secciones/login.php?wipe=1">Logout</a></li>';
+		$userid=$_SESSION['usuario']['id'];
+		$query="select tipo from Usuario where id=".$userid;
+		$datos=select($query);
+		$tipo=$datos['0']['tipo'];
+		if($tipo==1){
+			$log=$log.PHP_EOL.'<li><a href="aprobEvento.php">Administrar</a></li>';
+			$log=$log.PHP_EOL.'<li><a href="usuario.php">Usuario</a></li>';
+		}elseif($tipo==2){
+			$log=$log.PHP_EOL.'<li><a href="usuario.php">Usuario</a></li>';
+		}
+		$log=$log.PHP_EOL.'<li><a href="secciones/login.php?wipe=1">Logout</a></li>';
+
 	}
 	else{
-		$log='<li><a href="secciones/login.php?authenticate=1&force=1">Login</a></li>';
+		$log=$log.PHP_EOL.'<li><a href="secciones/login.php?authenticate=1&force=1">Login</a></li>';
 	}
 ?>
 
