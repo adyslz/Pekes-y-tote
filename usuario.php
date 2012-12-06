@@ -1,3 +1,92 @@
+<?php
+        require_once("php/crud_usuario.php");
+        session_start();
+        $_SESSION['referer'] = $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+        if(!isset($_SESSION['access_token']))
+        {
+            header("location: /pekes-tote/secciones/login.php?authenticate=1&force=1");
+        }
+
+        $query="select Evento.id,Evento.coment_admin,Evento.nombre,Evento.descripcion,Evento.estado from Evento where Evento.usuario=".$_SESSION["usuario"]["id"];
+        $datos[]=select($query);
+        $aprobados=array();
+        $rechazados=array();
+        $pendientes=array();
+        $datos=$datos[0];
+
+        foreach($datos as $dato){
+            if($dato["estado"]==3){
+                $aprobados[]=$dato;
+            }
+            elseif($dato["estado"]==2){
+                $rechazados[]=$dato;
+            }
+            elseif($dato["estado"]==1){
+                $pendientes[]=$dato;
+            }
+        }
+        $pendientesStr="";
+        $i=0;
+        foreach($pendientes as $dato){
+            $class="";
+            $i++;
+            if($i%2==1){
+                $class="style1";
+            }else{
+                $class="style2";
+            }
+             $pendientesStr=$pendientesStr.PHP_EOL.'
+             <div id="idEvento'.$dato['id'].'" class="evento '.$class.'">
+                <h3>'.$dato['id'].'-'.$dato['nombre'].'</h3>
+                <img src="img/down-circle.png" alt="Mas" title="Mas" onClick="switchImg(this)"/>
+                <img src="img/editar.png" alt="Editar" title="Editar" onClick="editar(this)"/>
+                <img src="img/borrar.png" alt="Borrar" title="Borrar" onClick="borrar(this)"/>
+                <p>'.$dato['descripcion'].'</p>
+            </div>';
+        }
+        $aprobadosStr="";
+        $i=0;
+        foreach($aprobados as $dato){
+            $class="";
+            $i++;
+            if($i%2==1){
+                $class="style1";
+            }else{
+                $class="style2";
+            }
+             $aprobadosStr=$aprobadosStr.PHP_EOL.'
+             <div id="idEvento'.$dato['id'].'" class="evento '.$class.'">
+                <h3>'.$dato['id'].'-'.$dato['nombre'].'</h3>
+                <img src="img/down-circle.png" alt="Mas" title="Mas" onClick="switchImg(this)"/>
+                <img src="img/editar.png" alt="Editar" title="Editar" onClick="editar(this)"/>
+                <img src="img/borrar.png" alt="Borrar" title="Borrar" onClick="borrar(this)"/>
+                <p>'.$dato['descripcion'].'</p>
+            </div>';
+        }
+        $rechazadosStr="";
+        $i=0;
+        foreach($rechazados as $dato){
+            $class="";
+            $i++;
+            if($i%2==1){
+                $class="style1";
+            }else{
+                $class="style2";
+            }
+             $rechazadosStr=$rechazadosStr.PHP_EOL.'
+             <div id="idEvento'.$dato['id'].'" class="evento '.$class.'">
+                <h3>'.$dato['id'].'-'.$dato['nombre'].'</h3>
+                <img src="img/down-circle.png" alt="Mas" title="Mas" onClick="switchImg(this)"/>
+                <img src="img/editar.png" alt="Editar" title="Editar" onClick="editar(this)"/>
+                <img src="img/borrar.png" alt="Borrar" title="Borrar" onClick="borrar(this)"/>
+                <p>'.$dato['descripcion'].'</p>
+                <div class="rechazado">
+                    '.$dato["coment_admin"].'
+                </div>
+            </div>';
+        }
+
+?>
 <!doctype html>
 <html class="no-js">
 
@@ -78,7 +167,6 @@
         <!-- END especificos de la pagina -->
     </head>
     <body>
-    	<header>
          <header>
             <div class="wrapper cf">
                 
@@ -96,88 +184,19 @@
             <div class="box1">
                 <h1>Eventos Pendientes</h1>
                 <div class="eventos">
-                    <div id="idEvento1" class="evento style1">
-                        <h3>id1-NOMBRE EVENTO</h3>
-                        <img src="img/down-circle.png" alt="Mas" title="Mas" onClick="switchImg(this)"/>
-                        <img src="img/editar.png" alt="Editar" title="Editar" onClick="editar(this)"/>
-                        <img src="img/borrar.png" alt="Borrar" title="Borrar" onClick="borrar(this)"/>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec tellus quis nibh accumsan accumsan. Morbi tincidunt dictum justo scelerisque porttitor. Fusce egestas consectetur massa. In hac habitasse platea dictumst. Morbi porta, tellus ac blandit tincidunt, nisl sapien viverra nisi, vel suscipit dolor arcu nec diam. Vestibulum posuere tortor sit amet justo hendrerit vel mattis velit ultrices. Aenean tincidunt facilisis turpis. Ves</p>
-                    </div>
-                    <div id="idEvento2" class="evento style2">
-                        <h3>id2-NOMBRE EVENTO</h3>
-                        <img src="img/down-circle.png" alt="Mas" title="Mas" onClick="switchImg(this)"/>
-                        <img src="img/editar.png" alt="Editar" title="Editar" onClick="editar(this)"/>
-                        <img src="img/borrar.png" alt="Borrar" title="Borrar" onClick="borrar(this)"/>
-                        <p>Lorem ipsum dolor >sit amet, consectetur adipiscing elit. Maecenas nec tellus quis nibh accumsan accumsan. Morbi tincidunt dictum justo scelerisque porttitor. Fusce egestas consectetur massa. In hac habitasse platea dictumst. Morbi porta, tellus ac blandit tincidunt, nisl sapien viverra nisi, vel suscipit dolor arcu nec diam. Vestibulum posuere tortor sit amet justo hendrerit vel mattis velit ultrices. Aenean tincidunt facilisis turpis. Ves</p>
-                    </div>
-                    <div id="idEvento3" class="evento style1">
-                        <h3>id3-NOMBRE EVENTO</h3>
-                        <img src="img/down-circle.png" alt="Mas" title="Mas" onClick="switchImg(this)"/>
-                        <img src="img/editar.png" alt="Editar" title="Editar" onClick="editar(this)"/>
-                        <img src="img/borrar.png" alt="Borrar" title="Borrar" onClick="borrar(this)"/>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec tellus quis nibh accumsan accumsan. Morbi tincidunt dictum justo scelerisque porttitor. Fusce egestas consectetur massa. In hac habitasse platea dictumst. Morbi porta, tellus ac blandit tincidunt, nisl sapien viverra nisi, vel suscipit dolor arcu nec diam. Vestibulum posuere tortor sit amet justo hendrerit vel mattis velit ultrices. Aenean tincidunt facilisis turpis. Ves</p>
-                    </div>
+                    <?php echo $pendientesStr;?>
                 </div>
             </div>
    	        <div class="box2">
                 <h1>Eventos Rechazados</h1>
                 <div class="eventos">
-                    <div id="idEvento1" class="evento style1">
-                        <h3>id1-NOMBRE EVENTO</h3>
-                       <img src="img/down-circle.png" alt="Mas" title="Mas" onClick="switchImg(this)"/>
-                        <img src="img/editar.png" alt="Editar" title="Editar" onClick="editar(this)"/>
-                        <img src="img/borrar.png" alt="Borrar" title="Borrar" onClick="borrar(this)"/>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec tellus quis nibh accumsan accumsan. Morbi tincidunt dictum justo scelerisque porttitor. Fusce egestas consectetur massa. In hac habitasse platea dictumst. Morbi porta, tellus ac blandit tincidunt, nisl sapien viverra nisi, vel suscipit dolor arcu nec diam. Vestibulum posuere tortor sit amet justo hendrerit vel mattis velit ultrices. Aenean tincidunt facilisis turpis. Ves</p>
-                        <div class="rechazado">
-                            No cumple con blah blah.
-                        </div>
-                    </div>
-                    <div id="idEvento2" class="evento style2">
-                        <h3>id2-NOMBRE EVENTO</h3>
-                        <img src="img/down-circle.png" alt="Mas" title="Mas" onClick="switchImg(this)"/>
-                        <img src="img/editar.png" alt="Editar" title="Editar" onClick="editar(this)"/>
-                        <img src="img/borrar.png" alt="Borrar" title="Borrar" onClick="borrar(this)"/>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec tellus quis nibh accumsan accumsan. Morbi tincidunt dictum justo scelerisque porttitor. Fusce egestas consectetur massa. In hac habitasse platea dictumst. Morbi porta, tellus ac blandit tincidunt, nisl sapien viverra nisi, vel suscipit dolor arcu nec diam. Vestibulum posuere tortor sit amet justo hendrerit vel mattis velit ultrices. Aenean tincidunt facilisis turpis. Ves</p>
-                        <div class="rechazado">
-                            Evento ofensivo para el publico.
-                        </div>
-                    </div>
-                    <div id="idEvento3" class="evento style1">
-                        <h3>id3-NOMBRE EVENTO</h3>
-                        <img src="img/down-circle.png" alt="Mas" title="Mas" onClick="switchImg(this)"/>
-                        <img src="img/editar.png" alt="Editar" title="Editar" onClick="editar(this)"/>
-                        <img src="img/borrar.png" alt="Borrar" title="Borrar" onClick="borrar(this)"/>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec tellus quis nibh accumsan accumsan. Morbi tincidunt dictum justo scelerisque porttitor. Fusce egestas consectetur massa. In hac habitasse platea dictumst. Morbi porta, tellus ac blandit tincidunt, nisl sapien viverra nisi, vel suscipit dolor arcu nec diam. Vestibulum posuere tortor sit amet justo hendrerit vel mattis velit ultrices. Aenean tincidunt facilisis turpis. Ves</p>
-                        <div class="rechazado">
-                            Prohibido mencionar a la mama del administrador en los eventos.
-                        </div>
-                    </div>
+                    <?php echo $rechazadosStr;?>
                 </div>
             </div>	
             <div class="box3">
                 <h1>Eventos Aceptados</h1>
                     <div class="eventos">
-                        <div id="idEvento1" class="evento style1">
-                            <h3>id1-NOMBRE EVENTO</h3>
-                           <img src="img/down-circle.png" alt="Mas" title="Mas" onClick="switchImg(this)"/>
-                        <img src="img/editar.png" alt="Editar" title="Editar" onClick="editar(this)"/>
-                        <img src="img/borrar.png" alt="Borrar" title="Borrar" onClick="borrar(this)"/>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec tellus quis nibh accumsan accumsan. Morbi tincidunt dictum justo scelerisque porttitor. Fusce egestas consectetur massa. In hac habitasse platea dictumst. Morbi porta, tellus ac blandit tincidunt, nisl sapien viverra nisi, vel suscipit dolor arcu nec diam. Vestibulum posuere tortor sit amet justo hendrerit vel mattis velit ultrices. Aenean tincidunt facilisis turpis. Ves</p>
-                        </div>
-                        <div id="idEvento2" class="evento style2">
-                            <h3>id2-NOMBRE EVENTO</h3>
-                            <img src="img/down-circle.png" alt="Mas" title="Mas" onClick="switchImg(this)"/>
-                        <img src="img/editar.png" alt="Editar" title="Editar" onClick="editar(this)"/>
-                        <img src="img/borrar.png" alt="Borrar" title="Borrar" onClick="borrar(this)"/>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec tellus quis nibh accumsan accumsan. Morbi tincidunt dictum justo scelerisque porttitor. Fusce egestas consectetur massa. In hac habitasse platea dictumst. Morbi porta, tellus ac blandit tincidunt, nisl sapien viverra nisi, vel suscipit dolor arcu nec diam. Vestibulum posuere tortor sit amet justo hendrerit vel mattis velit ultrices. Aenean tincidunt facilisis turpis. Ves</p>
-                        </div>
-                        <div id="idEvento3" class="evento style1">
-                            <h3>id3-NOMBRE EVENTO</h3>
-                            <img src="img/down-circle.png" alt="Mas" title="Mas" onClick="switchImg(this)"/>
-                        <img src="img/editar.png" alt="Editar" title="Editar" onClick="editar(this)"/>
-                        <img src="img/borrar.png" alt="Borrar" title="Borrar" onClick="borrar(this)"/>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec tellus quis nibh accumsan accumsan. Morbi tincidunt dictum justo scelerisque porttitor. Fusce egestas consectetur massa. In hac habitasse platea dictumst. Morbi porta, tellus ac blandit tincidunt, nisl sapien viverra nisi, vel suscipit dolor arcu nec diam. Vestibulum posuere tortor sit amet justo hendrerit vel mattis velit ultrices. Aenean tincidunt facilisis turpis. Ves</p>
-                        </div>
+                        <?php echo $aprobadosStr;?>
                     </div>
                 </div>
         </div>
