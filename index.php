@@ -173,7 +173,7 @@
 			<div class="home-featured">
 			
 				<ul id="filter-buttons">
-					<li><a href="#" data-filter=".print" class="selected">Listado General de Eventos</a></li>
+					<li><a href="#" data-filter=".photo" class="selected">Listado General de Eventos</a></li>
 				<!--	<li><a href="#" data-filter=".web">Comentarios</a></li>
 					<li><a href="#" data-filter=".print">Eventos</a></li>
 					<li><a href="#" data-filter=".design">Other</a></li>
@@ -183,11 +183,14 @@
 				 
                 
 				<div id="filter-container" class="cf">
-                    <figure class="print" style="width:450px">
+                    <figure class="photo" style="width:940px">
 						
 						<figcaption>
-						<!--	<a href="#" ><h3 class="heading">Informacion del Evento</h3></a>	-->
-							Aqui veras todos los eventos registrados en nuestra Web!!
+							<a href="#" ><h3 class="heading">Eventos Registrados</h3></a>
+							Aqui veras todos los eventos registrados en nuestra Web
+							<a href="#" ><h5>Evento 1</h5></a><br />
+							<a href="#" ><h5>Evento 2</h5></a><br />
+							<a href="#" ><h5>Evento 3</h5></a>
 						</figcaption>
 					</figure>
 			<!--codigo disqus
