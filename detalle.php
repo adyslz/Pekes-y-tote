@@ -40,7 +40,7 @@
 
 	<head>
 		<meta charset="utf-8"/>
-		<title>HackerGarage :: Eventos</title>
+		<title>HackerGarage :: Detalle</title>
         <link rel="icon" href="img/icono.ico">
 		 
 		<!--[if lt IE 9]>
@@ -127,120 +127,31 @@
 			<div class="wrapper cf">
 				
 				<div id="logo">
-					<a href="index.php"><h1>Eventos</h1></a>
+					<a href="detalle.php"><h1>Detalle de Evento</h1></a>
 				</div>
 				<?php
                 	include("secciones/navegacion.html");
                 ?>
 				
 				
-				<!-- SLIDER -->				
-				<div id="home-slider" class="lof-slidecontent">
-					
-					<div class="preload"><div></div></div>
-					
-					<!-- slider content --> 
-					<div class="main-slider-content" >
-					<ul class="sliders-wrap-inner">
-					   	<?php echo $eventList; ?> 
-					  </ul>  	
-					</div>
-					<!-- ENDS slider content --> 
-				           
-					<!-- slider nav -->
-					<div class="navigator-content">
-					  <div class="navigator-wrapper">
-					        <ul class="navigator-wrap-inner">
-		  					   	<?php echo $eventThumb; ?> 
-					        </ul>
-					  </div>
-					  <div class="button-next">Next</div>
-					  <div  class="button-previous">Previous</div>
-					  <!-- REMOVED TILL FIXED <div class="button-control"><span>STOP</span></div> -->
-					</div> 
-					<!-- slider nav -->       
-				 </div> 
-				<!-- ENDS SLIDER -->
-			</div>
+
 		</header>
 		<!-- ENDS HEADER -->
 		<div id="main">
 		
 		
-			<div class="wrapper cf">
+			<!--<div class="wrapper cf">
 			
-            <!--<a id="abajo"></a>-- LINK AL README-->
-			<div class="home-featured">
-			
-				<ul id="filter-buttons">
-					<li><a href="#" data-filter=".photo" class="selected">Listado General de Eventos</a></li>
-				<!--	<li><a href="#" data-filter=".web">Comentarios</a></li>
-					<li><a href="#" data-filter=".print">Eventos</a></li>
-					<li><a href="#" data-filter=".design">Other</a></li>
-					<li><a href="#" data-filter=".photo">Other2</a></li>	-->
-				</ul>
-				
-				 
-                
-				<div id="filter-container" class="cf">
-                    <figure class="photo" style="width:940px">
-						
-						<figcaption>
-							<a href="#" ><h3 class="heading">Eventos Registrados</h3></a>
-							Aqui veras todos los eventos registrados en nuestra Web
-							<a href="detalle.php" ><h5>Evento 1</h5></a><br />
-							<a href="#" ><h5>Evento 2</h5></a><br />
-							<a href="#" ><h5>Evento 3</h5></a>
-						</figcaption>
-					</figure>
-			<!--codigo disqus
-					<figure class="photo">
-						<div class="dis">
-        	<div id="disqus_thread"></div>
-        <script type="text/javascript">
-            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-            var disqus_shortname = 'proyephp'; // required: replace example with your forum shortname
 
-            /* * * DON'T EDIT BELOW THIS LINE * * */
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-         <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-        var disqus_shortname = 'proyephp'; // required: replace example with your forum shortname
-
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function () {
-            var s = document.createElement('script'); s.async = true;
-            s.type = 'text/javascript';
-            s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-        </script>
-   			final codigo disqus-->
-        </div>
-					<!--	<figcaption>
-							<a href="#" ><h3 class="heading">Comentarios</h3></a>
-                            </figcaption>
-					</figure>	-->
-						
-				</div>
 				
-			</div>
+			</div>-->
 			
 			
 					
 			
 			
-			</div>
+		</div>
 
-		 
-		<!--	</div>	-->
 				
 		<?php
 		  include("secciones/footer.html");
