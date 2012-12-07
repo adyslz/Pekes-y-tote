@@ -23,6 +23,7 @@
 }
 .cf {
   zoom: 1;
+  margin: 15px;
 }
 .wrapper {
   margin: 0 auto;
@@ -156,7 +157,7 @@ h6 {
 .widget-cols {
   margin-top: 60px;
   margin-bottom: 30px;
-  font-size: 11px;
+  font-size: 13px;
 }
 .widget-cols h4 {
   margin-bottom: 30px;
@@ -164,12 +165,12 @@ h6 {
   text-align: center;
 }
 .widget-cols > li {
-  width: 220px;
+  width: 350px;
   float: left;
-  margin-right: 20px;
+  margin-right: 30px;
 }
-.widget-cols > li.fourth-col {
-  margin-right: 0px;
+.widget-cols > li.first-col {
+  margin-right: 15px;
 }
 /* HEADER ------------------------------------------------------------*/
 header .wrapper {
@@ -688,9 +689,10 @@ footer h6 {
 /* FOOTER BOTTOM ------------------------------------------------------------*/
 .footer-bottom {
   padding-top: 20px;
-  padding-bottom: 60px;
+  padding-bottom: 30px;
   overflow: hidden;
   border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  margin: 15px;
 }
 .footer-bottom .left {
   width: 50%;

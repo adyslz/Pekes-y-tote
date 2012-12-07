@@ -145,7 +145,7 @@
       <div class="wrapper cf">
 				
 				<div id="logo">
-					<a href="index.php"><h1>Edición de Evento</h1></a>
+					<a href="aprobEvento.php"><h1>Edición de Evento</h1></a>
 				</div>
 				<?php
                 	include("secciones/navegacion.html");

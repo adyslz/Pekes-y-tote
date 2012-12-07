@@ -152,7 +152,7 @@
 			<div class="wrapper cf">
 				
 				<div id="logo">
-					<a href="index.html"><h1>Calendario</h1></a>
+					<a href="cal.php"><h1>Calendario</h1></a>
 				</div>
 				<?php
                 	include("secciones/navegacion.html");
