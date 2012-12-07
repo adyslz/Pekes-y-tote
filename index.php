@@ -165,31 +165,32 @@
 		</header>
 		<!-- ENDS HEADER -->
 		<div id="main">
-		<!-- MAIN 
+		
 		
 			<div class="wrapper cf">
-			<!-- featured 
-            <a id="abajo"></a>
+			
+            <!--<a id="abajo"></a>-- LINK AL README-->
 			<div class="home-featured">
 			
 				<ul id="filter-buttons">
-					<li><a href="#" data-filter=".photo" class="selected">Informaci&oacute;n del Evento</a></li>
-					<li><a href="#" data-filter=".web">Comentarios</a></li>
+					<li><a href="#" data-filter=".print" class="selected">Listado General de Eventos</a></li>
+				<!--	<li><a href="#" data-filter=".web">Comentarios</a></li>
 					<li><a href="#" data-filter=".print">Eventos</a></li>
 					<li><a href="#" data-filter=".design">Other</a></li>
-					<li><a href="#" data-filter=".photo">Other2</a></li>
+					<li><a href="#" data-filter=".photo">Other2</a></li>	-->
 				</ul>
 				
-				<!-- Filter container 
+				 
                 
 				<div id="filter-container" class="cf">
-                    <figure class="photo" style="width:450px">
-						<a href="#" class="thumb"><img src="img/dummies/featured/05.jpg" alt="alt" /></a>
+                    <figure class="print" style="width:450px">
+						
 						<figcaption>
-							<a href="#" ><h3 class="heading">Informacion del Evento</h3></a>
-							Tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. </figcaption>
+						<!--	<a href="#" ><h3 class="heading">Informacion del Evento</h3></a>	-->
+							Aqui veras todos los eventos registrados en nuestra Web!!
+						</figcaption>
 					</figure>
-					
+			<!--codigo disqus
 					<figure class="photo">
 						<div class="dis">
         	<div id="disqus_thread"></div>
@@ -218,24 +219,26 @@
             (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
         }());
         </script>
-        <!--<a href="http://foo.com/bar.html#disqus_thread">Link</a>--
+   			final codigo disqus-->
         </div>
-						<figcaption>
+					<!--	<figcaption>
 							<a href="#" ><h3 class="heading">Comentarios</h3></a>
                             </figcaption>
-					</figure>
-				</div><!-- ENDS Filter container --
+					</figure>	-->
+						
+				</div>
 				
 			</div>
-			<!-- ENDS featured --
 			
 			
+					
 			
 			
-			</div><!-- ENDS WRAPPER --
-		
-		 --ENDS MAIN -->
-		</div>
+			</div>
+
+		 
+		<!--	</div>	-->
+				
 		<?php
 		  include("secciones/footer.html");
 		?>
