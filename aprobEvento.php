@@ -6,8 +6,6 @@
     {
         header("location: /pekes-tote/secciones/login.php?authenticate=1&force=1");
     }
-
-
     $query="SELECT 
     		Evento.id, 
     		Evento.nombre, 
