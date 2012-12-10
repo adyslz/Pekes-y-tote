@@ -182,19 +182,19 @@
     <article>
         <div class="containerBox">
             <div class="box1">
-                <h1>Eventos Pendientes   <a href="php/creaPDF.php"><img src="img/pdf.jpeg"/ width="50px" height="50px"></a> </h1>
+                <h1>Eventos Pendientes   <a href="php/creaPDF.php"><img src="img/pdf.jpg"/ width="50px" height="50px"></a> </h1>
                 <div class="eventos">
                     <?php echo $pendientesStr;?>
                 </div>
             </div>
    	        <div class="box2">
-                <h1>Eventos Rechazados   <a href="php/creaPDF.php"><img src="img/pdf.jpeg"/ width="50px" height="50px"></a> </h1>
+                <h1>Eventos Rechazados   <a href="php/creaPDF.php"><img src="img/pdf.jpg"/ width="50px" height="50px"></a> </h1>
                 <div class="eventos">
                     <?php echo $rechazadosStr;?>
                 </div>
             </div>	
             <div class="box3">
-                <h1>Eventos Aceptados   <a href="php/creaPDF.php"><img src="img/pdf.jpeg"/ width="50px" height="50px"></a> </h1>
+                <h1>Eventos Aceptados   <a href="php/creaPDF.php"><img src="img/pdf.jpg"/ width="50px" height="50px"></a> </h1>
                     <div class="eventos">
                         <?php echo $aprobadosStr;?>
                     </div>
