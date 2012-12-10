@@ -77,6 +77,7 @@
 		if (!$conexion->query($str)) {
         	printf("Error: %s\n", $conexion->error);
         	$conexion->close();
+        	return -1;
     	}else{
     		$result=$conexion->insert_id;
     		$conexion->close();
@@ -129,10 +130,19 @@
 			$fcreacionStr=$fcreacion->format('Y-m-d H:i:s');
 			$query="INSERT INTO Evento(imagen,usuario,nombre,descripcion,precio,categoria,capacidad,fecha_evento,fecha_creacion,estado)
 				VALUES ('$rutaDestino',$id_usuario,'$name','$comment','$precio','$categoria','$capacidad','$feventoStr','$fcreacionStr',1)";
-			insert($query);
+			if(insert($query)==-1){
+				deletePic($rutaDestino);
+			}
 			header("Location: ../index.php");
 		}
 	}
+
+	function deletePic($str){
+		if (is_writable($val)){// sin esta linea unlink no funciona bravo :)
+			unlink($val);
+		}
+	}
+
 
 	function read($id){
 		$conexion=conexion();
@@ -186,9 +196,7 @@
 				WHERE id =$id";
 	 	$result=select($mi_query);
 	 	$val=$result[0]['imagen'];
-		if (is_writable($val)){// sin esta linea unlink no funciona bravo :)
-			unlink($val);
-		}
+		deletePic($val);
 	}
 
 	function delete($id){ 

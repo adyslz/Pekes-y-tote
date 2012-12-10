@@ -27,9 +27,10 @@
 require '../php/tmhOAuth.php';
 require '../php/tmhUtilities.php';
 require '../php/crud_usuario.php';
+require '../../data/twitter.inc';
 $tmhOAuth = new tmhOAuth(array(
-  'consumer_key'    => 'e92aEkLobmv5rEIUVFqUA',
-  'consumer_secret' => 'h7LvbMNMYOrwV5ZKrTMJEpKZbSZiU4ldTvUGc6qw',
+  'consumer_key'    => $consume_key,
+  'consumer_secret' => $consumer_secret,
 ));
 session_start();
 $referer=$_SESSION['referer'];
