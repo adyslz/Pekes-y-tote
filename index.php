@@ -34,6 +34,42 @@
     	 ';
 
     }
+
+    $query="SELECT DISTINCT MAX(fecha_evento) as MAX , MIN(fecha_evento) as MIN FROM Evento;";
+    $datos=select($query); 
+    try {
+    	$date = new DateTime($datos[0]['MIN']);
+	} catch (Exception $e) {
+		echo $e->getMessage();
+		exit(1);
+	}
+	$time=getdate($date->getTimestamp());
+	$minYear=$time['year'];
+
+	try {
+    	$date = new DateTime($datos[0]['MAX']);
+	} catch (Exception $e) {
+		echo $e->getMessage();
+		exit(1);
+	}
+	$time=getdate($date->getTimestamp());
+	$maxYear=$time['year'];
+
+    $strYears="";
+    $i=$minYear;
+    while($i<=$maxYear){
+    	if($i==$maxYear){
+    		$strYears=$strYears.'
+    		<li><a href="#filter-container" data-filter=".months" class="selected">'.$i.'</a></li>
+    	';
+    	}
+    	else{
+    		$strYears=$strYears.'
+    			<li><a href="#filter-container" data-filter=".months">'.$i.'</a></li>
+    		';
+    	}
+    	$i=$i+1;
+    }
 ?>
 <!doctype html>
 <html class="no-js">
@@ -173,26 +209,43 @@
 			<div class="home-featured">
 			
 				<ul id="filter-buttons">
-					<li><a href="#" data-filter=".photo" class="selected">Listado General de Eventos</a></li>
-				<!--	<li><a href="#" data-filter=".web">Comentarios</a></li>
-					<li><a href="#" data-filter=".print">Eventos</a></li>
-					<li><a href="#" data-filter=".design">Other</a></li>
-					<li><a href="#" data-filter=".photo">Other2</a></li>	-->
+					<li><a href="#filter-container" data-filter=".filtered-eventList" class="selected RealFilter">Listado General de Eventos</a></li>
 				</ul>
-				
+
 				 
                 
-				<div id="filter-container" class="cf">
-                    <figure class="photo" style="width:940px">
-						
-						<figcaption>
-							<a href="#" ><h3 class="heading">Eventos Registrados</h3></a>
-							Aqui veras todos los eventos registrados en nuestra Web
-							<a href="detalle.php" ><h5>Evento 1</h5></a><br />
-							<a href="#" ><h5>Evento 2</h5></a><br />
-							<a href="#" ><h5>Evento 3</h5></a>
-						</figcaption>
-					</figure>
+				<div id="filter-container" class="cf  filter-container">
+					<div class="filtered-eventList">
+	                    <figure style="width:940px">
+							
+							<figcaption>
+								<a href="#" ><h3 class="heading">Eventos Registrados</h3></a>
+								Aqui veras todos los eventos registrados en nuestra Web
+							</figcaption>
+						</figure>
+						<ul id="filter-buttons" class="filterYear">
+							<?php echo $strYears; ?>
+						</ul>
+						<script type='text/javascript'>
+							mesSelected='1';
+							añoSelected=<?php echo"'$maxYear'";?>;
+							getEventosAjax();
+						</script>
+						<ul id="filter-buttons" class="filterMonth">
+							<li><a href="#filter-container" data="1" class="selected">Enero</a></li>
+							<li><a href="#filter-container" data="2">Febrero</a></li>	
+							<li><a href="#filter-container" data="3">Marzo</a></li>	
+							<li><a href="#filter-container" data="4">Abril</a></li>	
+							<li><a href="#filter-container" data="5">Mayo</a></li>	
+							<li><a href="#filter-container" data="6">Junio</a></li>	
+							<li><a href="#filter-container" data="7">Julio</a></li>	
+							<li><a href="#filter-container" data="8">Agosto</a></li>	
+							<li><a href="#filter-container" data="9">Septiembre</a></li>	
+							<li><a href="#filter-container" data="10">Octubre</a></li>	
+							<li><a href="#filter-container" data="11">Noviembre</a></li>	
+							<li><a href="#filter-container" data="12">Diciembre</a></li>	
+						</ul>
+					</div>
 			<!--codigo disqus
 					<figure class="photo">
 						<div class="dis">
@@ -224,6 +277,8 @@
         </script>
    			final codigo disqus-->
         </div>
+        <div id="EventosXFecha">
+		</div>
 					<!--	<figcaption>
 							<a href="#" ><h3 class="heading">Comentarios</h3></a>
                             </figcaption>

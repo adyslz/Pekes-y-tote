@@ -1,3 +1,6 @@
+var mesSelected;
+var añoSelected;
+
 // Jquery with no conflict
 jQuery(document).ready(function($) {
 	
@@ -79,22 +82,20 @@ jQuery(document).ready(function($) {
 	// Filter - Isotope 
 	//##########################################
 
-	
 	var $container = $('#filter-container');
 	
 	$container.imagesLoaded( function(){
 		$container.isotope({
-			itemSelector : 'figure',
 			filter: '*',
+			animationEngine: 'jquery',
 			resizable: false,
-			animationEngine: 'jquery'
+			itemSelector:'div'
 		});
 	});
 	
 	// filter buttons
 		
-	$('#filter-buttons a').click(function(){
-	
+	$('.RealFilter a').click(function(){
 		// select current
 		var $optionSet = $(this).parents('#filter-buttons');
 	    $optionSet.find('.selected').removeClass('selected');
@@ -104,7 +105,9 @@ jQuery(document).ready(function($) {
 		$container.isotope({ filter: selector });
 		return false;
 	});
-	
+	filterYear();
+	filterMonth();
+	$('#EventosXFecha').addClass('selected');
 	//##########################################
 	// Tool tips
 	//##########################################
@@ -240,14 +243,43 @@ jQuery(document).ready(function($) {
 
 
 
+function filterMonth(){
+		$('.filterMonth a').click(function(){
+			var options=$(this).parents('#filter-buttons');
+			options.find('.selected').removeClass('selected');
+			var este=$(this)
+			este.addClass('selected');
+			mesSelected=este.attr('data');
+			getEventosAjax();
+			return false;
+		});
+
+	}
+
+
+function filterYear(){
+		$('.filterYear a').click(function(){
+			var options=$(this).parents('#filter-buttons');
+			options.find('.selected').removeClass('selected');
+			var este=$(this)
+			este.addClass('selected');
+			añoSelected=este.text();
+			getEventosAjax();
+			return false;
+		});
+}
 
 
 
-
-
-
-
-
+function getEventosAjax(){
+	$.ajax({ url: '/pekes-tote/php/crud_evento.php',
+         data: {crud_action: 'eventosXañoXmes', mes:mesSelected, agno:añoSelected},
+         type: 'post',
+         success: function(html){
+        $('#EventosXFecha').html(html);
+  		}
+  	});
+}
 
 
 

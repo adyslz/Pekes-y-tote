@@ -13,6 +13,9 @@
 			create();
 			}
 		break;
+		case "eventosXañoXmes":
+			 agnoXmes();
+		break;
 		case "modify":
 			if(in_array($referer, $modify_permited)){
 			modify();
@@ -84,6 +87,7 @@
     		return $result;
     	}	
 	}
+
 //update regresa null si hay un error o columnas afectadas si sale bien.
 // notas de mejora recibir un arreglo seria lo mejor, asi podria solo hacer update a los campos
 //necesarios.
@@ -213,6 +217,21 @@
     		$conexion->close();
     		return $result;
     	}	
+	}
+
+
+	function agnoXmes(){
+		$mes=$_REQUEST['mes'];
+		$agno=$_REQUEST['agno'];
+		$query="SELECT id,nombre FROM `Evento` where fecha_evento >= '".$agno."-".$mes."-1' and fecha_evento<date_add('".$agno."-".$mes."-1',interval 1 month)";
+		$datos=select($query);
+		$str="";
+		foreach($datos as $dato){
+			$str=$str.'
+				<a href="detalle.php?id='.$dato['id'].'" ><h5>'.$dato['nombre'].'</h5></a><br />
+			';
+		}
+		echo $str;
 	}
 
 	function readAll(){
