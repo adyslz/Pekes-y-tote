@@ -1,39 +1,5 @@
 <?php
-	require_once("php/crud_usuario.php");
-    session_start();
-    $_SESSION['referer'] = $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
-	$query="	SELECT Evento.*,
-						Usuario.id as userid
-				FROM `Evento`
-				LEFT JOIN Usuario ON Evento.usuario = Usuario.id
-				where estado=1
-				ORDER BY id DESC
-				LIMIT 10;";
 
-    $datos=select($query); 
-    $eventList=""; 
-    $eventThumb="";  
-    $i=0;
- 	foreach($datos as $dato)
-    {
-    	$img = 'http://alanturing.cucei.udg.mx/pekes-tote/data/img/'.$dato['userid'].'/'.$dato['nombre']."/". end(split('/',$dato['imagen']));
-
-    	 $eventList=$eventList.'
-			<li class="piccontainer">
-	         	<img src="'.$img.'" title="'.$dato['nombre'].'" alt="alt" />           
-	          <div class="slider-description">
-	            <h4>'.$dato['nombre'].'</h4>
-	            <p>'.$dato['descripcion'].'
-	            <a class="link" href="#abajo" data-filter=".web">Read more </a>
-           		</p>
-	         </div>
-	    </li>
-    	 ';
-    	 $eventThumb=$eventThumb.'
-	      <li class="piccontainer"><img src="'.$img.'" alt="alt" /></li>
-    	 ';
-
-    }
 ?>
 <!doctype html>
 <html class="no-js">
@@ -111,14 +77,7 @@
 		<script src="js/jquery.flexslider.js"></script>
 
 	</head>
-	<script type="text/javascript">
-	$(window).load(function() {
-    $('.piccontainer').find('img').each(function() {
-        var imgClass = (this.width / this.height > 1) ? 'wide' : 'tall';
-        $(this).addClass(imgClass);
-    })
-})
-	</script>
+
 	
 	<body class="home">
 	
@@ -138,19 +97,18 @@
 		</header>
 		<!-- ENDS HEADER -->
 		<div id="main">
-		
-		
-			<!--<div class="wrapper cf">
-			
 
-				
-			</div>-->
-			
-			
-					
-			
-			
+			<div class="wrapper cf">
+				<h3>Estas viendo el evento ------</h3>  
+				<div class="home-featured">
+					<figure class="photo" style="width:940px">
+
+
+					</figure>
+				</div> 
+			</div>
 		</div>
+
 
 				
 		<?php
