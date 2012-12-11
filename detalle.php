@@ -99,13 +99,51 @@
 		<div id="main">
 
 			<div class="wrapper cf">
-				<h3>Estas viendo el evento ------</h3>  
-				<div class="home-featured">
-					<figure class="photo" style="width:940px">
+				<div id="page-content" class="cf">        		
+		        		<div class="entry-content cf">	
+						<div id="nombre-evento" class="cf">
+						
+							<h2>Concierto de Rock</h2><br />	
+						</div>
 
+						<div id="descripcion-evento" class="cf">
+							<h4>Descripción del evento</h4><br />
 
-					</figure>
-				</div> 
+							<pre>		Asiste al concierto de Rock!!!! En Av. Falsa #20 Col. Inventada</pre>
+
+						</div>		
+
+						<div id="imagen-evento" class="cf">
+							<h4>Imágen del Evento</h4><br />
+							<img src="img/evento.png" alt="imagenEvento" />
+						</div>	
+
+						<div id="precio-evento" class="cf">
+							<h4>Precio del Evento</h4><br />
+							<pre>		$Cientos Pesos!</pre>
+						</div>
+
+						<div id="cat-evento" class="cf">
+							<h4>Categoria del Evento</h4><br />
+							<pre>		Convivencia</pre>
+						</div>
+
+						<div id="capacidad-evento" class="cf">
+							<h4>Capacidad del Evento</h4><br />
+							<pre>		Ilimitada</pre>
+						</div>
+
+						<div id="fecha-evento" class="cf">
+							<h4>Fecha del Evento</h4><br />
+							<pre>		15/12/2012</pre>
+						</div>	
+
+						<div id="usuario-evento" class="cf">
+							<h4>Usuario de Registro</h4><br />
+							<pre>		@pekesytote</pre>
+						</div>					
+					</div>
+				</div>
 			</div>
 		</div>
 
