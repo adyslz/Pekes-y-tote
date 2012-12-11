@@ -6,7 +6,7 @@
 						Usuario.id as userid
 				FROM `Evento`
 				LEFT JOIN Usuario ON Evento.usuario = Usuario.id
-				where estado=1
+				where estado=3
 				ORDER BY id DESC
 				LIMIT 10;";
 
