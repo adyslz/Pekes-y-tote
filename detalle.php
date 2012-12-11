@@ -1,5 +1,14 @@
 <?php
+		session_start();
+		$_SESSION['referer'] = $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 
+		$id=0;
+
+		if(!isset($_REQUEST['id'])){
+			$id=1;
+		}else{
+			$id=$_REQUEST['id'];
+		}
 ?>
 <!doctype html>
 <html class="no-js">
@@ -92,7 +101,45 @@
                 	include("secciones/navegacion.html");
                 ?>
 				
-				
+				<?php
+			echo "
+				<div id='php_erasable'>
+					<script type='text/javascript'>
+						 $(document).ready(function() {
+					           php_erasable();
+					        });
+	error_reporting(E_ALL);
+
+						function php_erasable(){
+							$.ajax({ url: '/pekes-tote/php/crud_evento.php',
+							         data: {crud_action: 'read',idEvento:".$id."},
+							         type: 'post',dataType: 'json',
+							         success: function(html){
+								        var evento=html;
+								        var n=evento.imagen.split('/');
+										var nombre=n[n.length-1];
+										n=evento.fecha_evento.split('-');
+										var fecha=n[2]+'/'+n[1]+'/'+n[0];
+							          	var img='http://alanturing.cucei.udg.mx/pekes-tote/data/img/'+evento.userid+'/'+evento.nombre+'/'+nombre;
+										\$('#Rprecio').replaceWith(evento.precio);
+										\$('#Rnombre').replaceWith(evento.nombre);
+										\$('#Rdesc').replaceWith(evento.descripcion);
+										\$('#idEventoToUpdate').attr('value',evento.id);
+										\$('#imagen').attr('src',img);
+										\$('#Rcat').replaceWith(evento.categoria);
+										\$('#Rcap').replaceWith(evento.capacidad);
+										\$('#Rdate').replaceWith(fecha);
+										\$('#Rnick').replaceWith(evento.nickname);
+										\$('#php_erasable').remove();
+							  		}
+							});
+
+						
+						}
+					</script>
+				</div>
+			";	
+		?>
 
 		</header>
 		<!-- ENDS HEADER -->
@@ -103,44 +150,44 @@
 		        		<div class="entry-content cf">	
 						<div id="nombre-evento" class="cf">
 						
-							<h2>Concierto de Rock</h2><br />	
+							<h2><div id="Rnombre"/></h2><br />	
 						</div>
 
 						<div id="descripcion-evento" class="cf">
 							<h4>Descripción del evento</h4><br />
 
-							<pre>		Asiste al concierto de Rock!!!! En Av. Falsa #20 Col. Inventada</pre>
+							<pre>		<div id="Rdesc"/></pre>
 
 						</div>		
 
 						<div id="imagen-evento" class="cf">
 							<h4>Imágen del Evento</h4><br />
-							<img src="img/evento.png" alt="imagenEvento" />
+							<img id ="imagen" src="img/evento.png" alt="imagenEvento" />
 						</div>	
 
 						<div id="precio-evento" class="cf">
 							<h4>Precio del Evento</h4><br />
-							<pre>		$Cientos Pesos!</pre>
+							<pre>		$<div id="Rprecio"/> Pesos!</pre>
 						</div>
 
 						<div id="cat-evento" class="cf">
 							<h4>Categoria del Evento</h4><br />
-							<pre>		Convivencia</pre>
+							<pre>		<div id="Rcat"/></pre>
 						</div>
 
 						<div id="capacidad-evento" class="cf">
 							<h4>Capacidad del Evento</h4><br />
-							<pre>		Ilimitada</pre>
+							<pre>		<div id="Rcap"/></pre>
 						</div>
 
 						<div id="fecha-evento" class="cf">
 							<h4>Fecha del Evento</h4><br />
-							<pre>		15/12/2012</pre>
+							<pre>		<div id="Rdate"/></pre>
 						</div>	
 
 						<div id="usuario-evento" class="cf">
 							<h4>Usuario de Registro</h4><br />
-							<pre>		@pekesytote</pre>
+							<pre>		@<div id="Rnick"></pre>
 						</div>					
 					</div>
 				<div class="dis">

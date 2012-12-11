@@ -157,7 +157,24 @@
 
 	function read($id){
 		$conexion=conexion();
-		$result=$conexion->query("select * from Evento where id=$id");
+		$query="SELECT 
+    		Evento.id, 
+    		Evento.nombre, 
+    		Evento.descripcion, 
+    		Evento.imagen, 
+    		Evento.precio, 
+    		Evento.fecha_evento, 
+    		Evento.fecha_creacion, 
+    		Evento.categoria, 
+    		Evento.capacidad,
+    		Usuario.nickname,
+    		Usuario.id AS userid ,
+    		Categoria.descripcion AS categoria
+			FROM Evento
+			LEFT JOIN Categoria ON Evento.categoria = Categoria.id
+			LEFT JOIN Usuario ON Evento.usuario = Usuario.id
+			WHERE Evento.id=".$id;
+		$result=$conexion->query($query);
 		if($result->num_rows==1){
 	 		$evento = $result -> fetch_assoc();
 	 	}
