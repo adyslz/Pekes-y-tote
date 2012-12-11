@@ -24,7 +24,7 @@
 	          <div class="slider-description">
 	            <h4>'.$dato['nombre'].'</h4>
 	            <p>'.$dato['descripcion'].'
-	            <a class="link" href="#abajo" data-filter=".web">Read more </a>
+	       
            		</p>
 	         </div>
 	    </li>
