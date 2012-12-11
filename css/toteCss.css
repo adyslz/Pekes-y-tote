@@ -77,7 +77,7 @@
 	font-size:14px;
 	padding:5px
 }
-.evento p{
+.evento .desc{
 	display:none;
 }
 .evento h3{

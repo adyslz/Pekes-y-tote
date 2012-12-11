@@ -3,6 +3,8 @@
 	require_once("/home/cc409/pekes-tote/data/dbData.inc");
 	$create_permited=array("localhost:8888/Github/Pekes-y-tote/reg.php","alanturing.cucei.udg.mx/pekes-tote/reg.php");
 	$modify_permited=array("localhost:8888/Github/Pekes-y-tote/edita.php","alanturing.cucei.udg.mx/pekes-tote/edita.php");
+	$delete_permited=array("localhost:8888/Github/Pekes-y-tote/usuario.php","alanturing.cucei.udg.mx/pekes-tote/usuario.php");
+
 	session_start();
 	$referer=$_SESSION['referer'];
 	$action=$_REQUEST["crud_action"];
@@ -10,20 +12,25 @@
 	switch($action){
 		case "create":
 			if(in_array($referer, $create_permited)){
-			create();
+				create();
 			}
 		break;
 		case "eventosXañoXmes":
 			 agnoXmes();
 		break;
+		case "read":
+			$x=read($_REQUEST['idEvento']);
+			header('Content-Type: application/json');
+			echo json_encode($x);
+		break;
 		case "modify":
 			if(in_array($referer, $modify_permited)){
-			modify();
+				modify();
 			}
 		break;
 		case "delete":
-			if(in_array($referer, $modify_permited)){
-			delete();
+			if(in_array($referer, $delete_permited)){
+				delete($_REQUEST['idEvento']);
 			}
 		break;
 		

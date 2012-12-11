@@ -37,11 +37,11 @@
             }
              $pendientesStr=$pendientesStr.PHP_EOL.'
              <div id="idEvento'.$dato['id'].'" class="evento '.$class.'">
-                <h3>'.$dato['id'].'-'.$dato['nombre'].'</h3>
+                <a href="detalle.php?id='.$dato['id'].'"><h3>'.$dato['id'].'-'.$dato['nombre'].'</h3></a>
                 <img src="img/down-circle.png" alt="Mas" title="Mas" onClick="switchImg(this)"/>
                 <img src="img/editar.png" alt="Editar" title="Editar" onClick="editar(this)"/>
                 <img src="img/borrar.png" alt="Borrar" title="Borrar" onClick="borrar(this)"/>
-                <p>'.$dato['descripcion'].'</p>
+                <div class="desc"><p>'.$dato['descripcion'].'</p></div>
             </div>';
         }
         $aprobadosStr="";
@@ -56,11 +56,11 @@
             }
              $aprobadosStr=$aprobadosStr.PHP_EOL.'
              <div id="idEvento'.$dato['id'].'" class="evento '.$class.'">
-                <h3>'.$dato['id'].'-'.$dato['nombre'].'</h3>
+                <a href="detalle.php?id='.$dato['id'].'"><h3>'.$dato['id'].'-'.$dato['nombre'].'</h3></a>
                 <img src="img/down-circle.png" alt="Mas" title="Mas" onClick="switchImg(this)"/>
                 <img src="img/editar.png" alt="Editar" title="Editar" onClick="editar(this)"/>
                 <img src="img/borrar.png" alt="Borrar" title="Borrar" onClick="borrar(this)"/>
-                <p>'.$dato['descripcion'].'</p>
+                <div class="desc"><p>'.$dato['descripcion'].'</p></div>
             </div>';
         }
         $rechazadosStr="";
@@ -75,11 +75,11 @@
             }
              $rechazadosStr=$rechazadosStr.PHP_EOL.'
              <div id="idEvento'.$dato['id'].'" class="evento '.$class.'">
-                <h3>'.$dato['id'].'-'.$dato['nombre'].'</h3>
+                <a href="detalle.php?id='.$dato['id'].'"><h3>'.$dato['id'].'-'.$dato['nombre'].'</h3></a>
                 <img src="img/down-circle.png" alt="Mas" title="Mas" onClick="switchImg(this)"/>
                 <img src="img/editar.png" alt="Editar" title="Editar" onClick="editar(this)"/>
                 <img src="img/borrar.png" alt="Borrar" title="Borrar" onClick="borrar(this)"/>
-                <p>'.$dato['descripcion'].'</p>
+                <div class="desc"><p>'.$dato['descripcion'].'</p></div>
                 <div class="rechazado">
                     '.$dato["coment_admin"].'
                 </div>
@@ -200,9 +200,6 @@
                     </div>
                 </div>
         </div>
-        <form id="borrarForm" action="borrar.php" method="post">
-            <input type="hidden" id="idEventoField" name="idEvento"/>
-        </form>
     </article>
     
     <?php

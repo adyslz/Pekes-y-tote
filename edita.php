@@ -16,10 +16,8 @@
 			$id=1;
 		}else{
 			$id=$_REQUEST['idEventoToUpdate'];
+			echo $id;
 		}
-
-		require_once("php/crud_evento.php");
-		$evento=read($id);
 ?>
 
 <!doctype html>
@@ -139,30 +137,43 @@ jQuery(function($){
 	
 	<body class="page" onLoad="">
 		<?php
-			$date=date_create_from_format('Y-m-d',$evento['fecha_evento']);
-			$dateStr=$date->format('j / m / Y');
-			$img = "http://alanturing.cucei.udg.mx/pekes-tote/data/img/". end(split('/',$evento['imagen']));
 			echo "
 				<div id='php_erasable'>
 					<script type='text/javascript'>
+						var evento;
 						function php_erasable(){
-							nicEditors.findEditor('descripcion').setContent('".$evento['descripcion']."');
-							\$('#precio').attr('value','".$evento['precio']."');
-							\$('#name').attr('value','".$evento['nombre']."');
-							\$('#nameHidden').attr('value','".$evento['nombre']."');
-							\$('#idEventoToUpdate').attr('value','".$id."');
-							\$('#imagen').attr('src','".$img."');
-							if('".$evento['capacidad']."'=='ilimitada'){
-								document.contactForm.capacidad[0].checked=true;
-							}else{
-								document.contactForm.capacidad[1].checked=true;
-								\$('#cap').attr('value','".$evento['capacidad']."');
-								\$('#cap').attr('disabled','');
+							$.ajax({ url: '/pekes-tote/php/crud_evento.php',
+							         data: {crud_action: 'read',idEvento:".$id."},
+							         type: 'post',
+							         success: function(html){
+								          evento=eval('(' + html + ')');
+								          var n=evento.imagen.split('/');
+											var nombre=n[n.length-1];
+											var userid=".$_SESSION['usuario']['id'].";
+											n=evento.fecha_evento.split('-');
+											var fecha=n[2]+'/'+n[1]+'/'+n[0];
+								          	var img='http://alanturing.cucei.udg.mx/pekes-tote/data/img/'+userid+'/'+evento.nombre+'/'+nombre;
+								          	nicEditors.findEditor('descripcion').setContent(evento.descripcion);
+											\$('#precio').attr('value',evento.precio);
+											\$('#name').attr('value', evento.nombre);
+											\$('#nameHidden').attr('value',evento.nombre);
+											\$('#idEventoToUpdate').attr('value',evento.id);
+											\$('#imagen').attr('src',img);
+											if(evento.capacidad=='ilimitada'){
+												document.contactForm.capacidad[0].checked=true;
+											}else{
+												document.contactForm.capacidad[1].checked=true;
+												\$('#cap').attr('value',evento.capacidad);
+												\$('#cap').attr('disabled','');
 
-							}
-							document.getElementById('opcionesCat').selectedIndex='".$evento['categoria']."';
-							\$('#datepicker').attr('value','".$dateStr."')
-							\$('#php_erasable').remove();
+											}
+											document.getElementById('opcionesCat').selectedIndex=evento.categoria;
+											\$('#datepicker').attr('value',fecha)
+											\$('#php_erasable').remove();
+							  		}
+							});
+
+						
 						}
 					</script>
 				</div>
@@ -267,7 +278,6 @@ jQuery(function($){
 		  
         <p><input type="button" value="Enviar" onClick="validaEdicion()"/>
         <!--<span id="error" class="warning">Message</span>-->
-        <input type="button" value="Borrar Datos" onClick="resetForm();"/></p> 
         <!--<span id="error" class="warning">Message</span></p>-->
 					</fieldset>
 		<input type="hidden" name="crud_action" value="modify"/>
