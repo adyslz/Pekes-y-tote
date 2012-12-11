@@ -5,7 +5,7 @@
 		$id=0;
 
 		if(!isset($_REQUEST['id'])){
-			$id=1;
+			header("location: /pekes-tote/errorDetalle.php");
 		}else{
 			$id=$_REQUEST['id'];
 		}
@@ -17,7 +17,7 @@
 		<meta charset="utf-8"/>
 		<title>HackerGarage :: Detalle</title>
         <link rel="icon" href="img/icono.ico">
-		 
+	
 		<!--[if lt IE 9]>
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -102,6 +102,7 @@
                 ?>
 				
 				<?php
+				if($id!=-1){
 			echo "
 				<div id='php_erasable'>
 					<script type='text/javascript'>
@@ -146,7 +147,8 @@
 						}
 					</script>
 				</div>
-			";	
+			";
+				}
 		?>
 
 		</header>
