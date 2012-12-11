@@ -3,7 +3,7 @@
 		$_SESSION['referer'] = $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 		if(!isset($_SESSION['access_token']))
 		{
-			header("location: /pekes-tote/secciones/login.php?authenticate=1&force=1");
+			header("location: /pekes-tote/secciones/login.php?authenticate=1");
 		}
 		
 ?>

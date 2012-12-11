@@ -2,14 +2,11 @@
 		session_start();
 		$_SESSION['referer'] = $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 
-		if(!isset($_SESSION['usuario']))
+		if(!isset($_SESSION['access_token']))
 		{
-			$usuario = array(
-	    		"id" => 7,
-	    		"nickname" => "loren"
-	    	);
-			$_SESSION['usuario']=$usuario;
+			header("location: /pekes-tote/secciones/login.php?authenticate=1");
 		}
+		
 		$id=0;
 
 		if(!isset($_REQUEST['idEventoToUpdate'])){
