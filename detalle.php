@@ -143,12 +143,7 @@
 							<pre>		@pekesytote</pre>
 						</div>					
 					</div>
-				</div>
-			</div>
-
-
-		<figure class="photo">
-						<div class="dis">
+				<div class="dis">
         	<div id="disqus_thread"></div>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -175,11 +170,12 @@
             (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
         }());
         </script>
-		</figure>
-   	
-        </div>
+
 		</div>
-		
+				</div>
+	
+			</div>
+		</div>
 
 				
 		<?php
