@@ -4,6 +4,8 @@
 	$create_permited=array("localhost:8888/Github/Pekes-y-tote/reg.php","alanturing.cucei.udg.mx/pekes-tote/reg.php");
 	$modify_permited=array("localhost:8888/Github/Pekes-y-tote/edita.php","alanturing.cucei.udg.mx/pekes-tote/edita.php");
 	$delete_permited=array("localhost:8888/Github/Pekes-y-tote/usuario.php","alanturing.cucei.udg.mx/pekes-tote/usuario.php");
+	$changeStatus_permited=array("localhost:8888/Github/Pekes-y-tote/aprobEvento.php","alanturing.cucei.udg.mx/pekes-tote/aprobEvento.php");
+
 
 	session_start();
 	$referer=$_SESSION['referer'];
@@ -31,6 +33,11 @@
 		case "delete":
 			if(in_array($referer, $delete_permited)){
 				delete($_REQUEST['idEvento']);
+			}
+		break;
+		case "changeStatus":
+			if(in_array($referer, $changeStatus_permited)){
+				changeStatus($_REQUEST['idEvento']);
 			}
 		break;
 		
@@ -243,7 +250,29 @@
     	}	
 	}
 
-
+	function changeStatus($id){
+		$newStatus=$_REQUEST['stat'];
+		$conexion=conexion();
+		$aux="";
+		if(isset($_REQUEST['comment'])){
+			$aux='coment_admin =\''.addslashes($_REQUEST['comment']).'\',';
+		}
+		$str='UPDATE 
+				Evento
+			  set 
+			  	'.$aux.'
+			  	estado='.$newStatus.'
+			  where
+			  	id='.$id;
+		if (!$conexion->query($str)) {
+        	printf("Error: %s\n", $conexion->error);
+        	$conexion->close();
+    	}else{
+    		$result=$conexion->affected_rows;
+    		$conexion->close();
+    		return $result;
+    	}	
+	}
 	function agnoXmes(){
 		$mes=$_REQUEST['mes'];
 		$agno=$_REQUEST['agno'];

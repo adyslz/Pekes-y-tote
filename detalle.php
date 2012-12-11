@@ -108,7 +108,6 @@
 						 $(document).ready(function() {
 					           php_erasable();
 					        });
-	error_reporting(E_ALL);
 
 						function php_erasable(){
 							$.ajax({ url: '/pekes-tote/php/crud_evento.php',
@@ -116,6 +115,10 @@
 							         type: 'post',dataType: 'json',
 							         success: function(html){
 								        var evento=html;
+								        if(evento==null){
+							         		alert('el id no existe :)');
+											window.location.href ='index.php';
+							         	}
 								        var n=evento.imagen.split('/');
 										var nombre=n[n.length-1];
 										n=evento.fecha_evento.split('-');
@@ -131,7 +134,12 @@
 										\$('#Rdate').replaceWith(fecha);
 										\$('#Rnick').replaceWith(evento.nickname);
 										\$('#php_erasable').remove();
+							  		},
+							  		error: function(html){
+							  			alert('el id no existe :)');
+										window.location.href ='index.php';
 							  		}
+
 							});
 
 						
@@ -162,7 +170,7 @@
 
 						<div id="imagen-evento" class="cf">
 							<h4>Imágen del Evento</h4><br />
-							<img id ="imagen" src="img/evento.png" alt="imagenEvento" />
+							<img id ="imagen" src="" alt="imagenEvento" />
 						</div>	
 
 						<div id="precio-evento" class="cf">

@@ -33,10 +33,8 @@
     foreach($datos as $dato)
     {
     	$listEvent=$listEvent.PHP_EOL.'
-    	<li id="ls'.$dato['id'].'">'.$dato['nombre'].'</li>
-    	';
-    	$listButton=$listButton.PHP_EOL.'
-    	<li><button type="button" id="btn'.$dato['id'].'" name="'.$dato['id'].'" onclick="eventoEleg(this)"> Ver evento </button></a></li>
+    	<li id="ls'.$dato['id'].'">'.$dato['nombre'].'
+    	<button type="button" id="btn'.$dato['id'].'" name="'.$dato['id'].'" onclick="eventoEleg(this)"> Ver evento </button></a></li>
     	';
     	$img = 'http://alanturing.cucei.udg.mx/pekes-tote/data/img/'.$dato['userid'].'/'.$dato['nombre']."/". end(split('/',$dato['imagen']));
     	$listEventLong=$listEventLong.PHP_EOL.'
@@ -49,9 +47,9 @@
 						"'.$dato['categoria'].'"</a> Publicado el '.$dato['fecha_creacion'].' por:'.$dato['nickname'].' </label>
          			</p>
          		<div>
-         			<button type="button" onclick="aprobado(1)">Aprobar</button>
-         			<button type="button" onclick="rechazado(1)">Rechazar</button>
-         			<button type="button" onclick="admModificar(1)">Modificar</button>
+         			<button type="button" onclick="aprobado(this)">Aprobar</button>
+         			<button type="button" onclick="rechazado(this)">Rechazar</button>
+         			<button type="button" onclick="admModificar(this)">Modificar</button>
          		</div>
          	</div>    	';
 
@@ -160,9 +158,6 @@
     				<h2>Eventos</h2>
     				<ul class="listEvent"><a id="inicio"></a>
         				<?php echo $listEvent;?>
-    				</ul>
-    				<ul class="listBtnEvent">
-    					<?php echo $listButton;?>	
     				</ul>
     				<?php echo $listEventLong;?>
         </div>		

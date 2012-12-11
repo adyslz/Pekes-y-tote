@@ -23,201 +23,59 @@ function eventoEleg(opc){
 	attr te permite cambiar el valor de un atributo 
 	de un tag mandando .attr('atributo','nuevovalor')
 	o recuperarlo solo con .attr('atributo')*/
-	var text=element.attr('name');
+	var text='info'+element.attr('name');
+	$('#'+text).css('display','inherit');
+}
 
-/*
-	aqui vuelvo a llamar a todos los objetos clase info
-	y ejecuto esta funcion con cada uno de ellos
-	para eso sirve el each() a cada uno de los elementos
-	que regrese el $() se le correra esa funcion
-	para acceder al elemento sobre el que se esta ejecutando
-	se utiliza this.
-*/
-	$('.info').each(function(){
-		/*aqui convierto el elemento info en uno de jquery*/
-		var aux=$(this);
-		/*este if sirve para saber si el id contiene la cadena de texto
-		como les pusiste de id a todos lsEVENTO btnEVENTO etc
-		le puse al boton en el atributo name el valor EVENTO
-		asi puedes buscar que tengan el name del boton
-		en algun lugar del id*/
-		if(aux.attr('id').indexOf(text)!= -1){
-			/*esta linea cambia el css del
-			elemento con clase info que contenga
-			el nombre del boton
-			en su id*/
-			aux.css('display','inherit');
-		}
-	})
+function rechazado(element){
+	var este=$(element);
+	text=este.parents('.info').attr('id').substring('4');
+	var comentario=prompt('seguro que deseas rechazar? por favor comenta algo si aceptas.')
+	if(comentario){
+		$.ajax({ url: '/pekes-tote/php/crud_evento.php',
+			data: {crud_action: 'changeStatus',comment:comentario, idEvento:text,stat:2},
+		 	type: 'post',
+		 	success: function(html){
+					window.location.reload();
+				},
+				error:function(html){
+					console.log('damn...'+html);
+				}
+			});
+
+	}
+
+}
+
+function aprobado(element){
+	var este=$(element);
+	text=este.parents('.info').attr('id').substring('4');
 	
-}
-
-function aprobado(opc){
-	open("./php/aprobar.php?opc");
-	actualizar(opc);			
-}
-
-function rechazado(opc){
-	switch(opc){
-		case 1: formNvo = document.createElement("form");
-				fomrNvo.name="formAdmEvent";
-    			fomrNvo.method="get";
-    			fomrNvo.action= "./php/admEvent_inserta.php";
-  				infohackers.appendChild(formNvo); 
-				etiqueta = document.createElement("label");
-				etiqueta.for = "textarea1";
-				etiqueta.innerHTML = "<br />Comentarios";
-				formNvo.appendChild(etiqueta);
-
- 				campo =document.createElement("textarea");	
- 				campo.id = "textarea1";
- 				campo.name="textarea";
-				campo.rows = "5";
-				campo.cols = "50";
-				campo.style.marginLeft="87px";
-				formNvo.appendChild(campo);
-				
-				enviar = document.createElement("button"); 
-  				enviar.type = "submit"; 
-  				enviar.innerHTML = "enviar comentario";
-  				enviar.onclick = function () {actualizar(opc)}      			
-  				formNvo.appendChild(enviar); 
-				evitar = document.createElement("button"); 
-  				evitar.type = "button"; 
-  				evitar.innerHTML = "no enviar comentario";
-  				evitar.onclick = function () {actualizar(opc)}    
-  				formNvo.appendChild(evitar); 	
-  			break;
-  		case 2: formNvo = document.createElement("form");
-				formNvo.id = "formrechazar2"; 
-  				fomrNvo.name="formAdmEvent";
-    			fomrNvo.method="get";
-    			fomrNvo.action="./php/admEvent_inserta.php";
-  				infocotorreo.appendChild(formNvo); 
-				etiqueta = document.createElement("label");
-				etiqueta.for = "textarea2";
-				etiqueta.innerHTML = "<br />Comentarios";
-				formNvo.appendChild(etiqueta);
- 				
- 				campo =document.createElement("textarea");	
-	 			campo.id = "textarea2";
- 				campo.name="textarea";
-				campo.rows = "5";
-				campo.cols = "50";
-				campo.style.marginLeft="87px";
-				formNvo.appendChild(campo);
-			
-				enviar = document.createElement("button"); 
-  				enviar.type = "submit"; 
-  				enviar.innerHTML = "enviar comentario";   
-				enviar.onclick = function () {actualizar(opc)}      			
-  				formNvo.appendChild(enviar); 
-				evitar = document.createElement("button"); 
-  				evitar.type = "button"; 
-  				evitar.innerHTML = "no enviar comentario";
-  				evitar.onclick = function () {actualizar(opc)}    
-  				formNvo.appendChild(evitar); 	
-  			break;
-		case 3: formNvo = document.createElement("form");
-				formNvo.id = "formrechazar3"; 
-  				fomrNvo.name="formAdmEvent";
-    			fomrNvo.method="get";
-    			fomrNvo.action="./php/admEvent_inserta.php";
-  				infoparty.appendChild(formNvo); 
-				etiqueta = document.createElement("label");
-				etiqueta.for = "textarea3";
-				etiqueta.innerHTML = "<br />Comentarios";
-				formNvo.appendChild(etiqueta);
- 				
- 				campo =document.createElement("textarea");	
-	 			campo.id = "textarea3";
- 				campo.name="textarea";
-				campo.rows = "5";
-				campo.cols = "50";
-				campo.style.marginLeft="87px";
-				formNvo.appendChild(campo);
-			
-				enviar = document.createElement("button"); 
-  				enviar.type = "submit"; 
-  				enviar.innerHTML = "enviar comentario";
-  				enviar.onclick = function () {actualizar(opc)}      			
-  				formNvo.appendChild(enviar); 
-				evitar = document.createElement("button"); 
-  				evitar.type = "button"; 
-  				evitar.innerHTML = "no enviar comentario";
- 				evitar.onclick = function () {actualizar(opc)}    
-  				formNvo.appendChild(evitar);
-  			break;
-	}
-}
-
-function actualizar(opc){
-	switch (opc){
-		case 1: eliminar = document.getElementById("lshackers");
-				eliminar.parentNode.removeChild(eliminar);
-				eliminar2 = document.getElementById("btnhackers");
-				eliminar2.parentNode.removeChild(eliminar2);
-				eliminar3 = document.getElementById("infohackers");
-				eliminar3.parentNode.removeChild(eliminar3);
-				eliminar4 = document.getElementById("formrechazar1");
-				eliminar4.parentNode.removeChild(eliminar4);
-			break;	
-		case 2: eliminar = document.getElementById("lscotorreo");
-				eliminar.parentNode.removeChild(eliminar);
-				eliminar2 = document.getElementById("btncotorreo");
-				eliminar2.parentNode.removeChild(eliminar2);
-				eliminar3 = document.getElementById("infocotorreo");
-				eliminar3.parentNode.removeChild(eliminar3);
-				eliminar4 = document.getElementById("formrechazar2");
-				eliminar4.parentNode.removeChild(eliminar4);
-			break;
-		case 3: eliminar = document.getElementById("lsparty");
-				eliminar.parentNode.removeChild(eliminar);
-				eliminar2 = document.getElementById("btnparty");
-				eliminar2.parentNode.removeChild(eliminar2);
-				eliminar3 = document.getElementById("infoparty");
-				eliminar3.parentNode.removeChild(eliminar3);
-				eliminar4 = document.getElementById("formrechazar3");
-				eliminar4.parentNode.removeChild(eliminar4);
-			break;
-	}	
-}
-/*
-enviarComent(opc){
-	switch(opc){
-		case 1: areaTexto= document.getElementById("textarea");
-			if(areaTexto.length == 0 || /^\s+$/.test(areaTexto)){
-				document.formrechazar1.submit();
-				actualizar(opc);	
-			} 
-			else{
-				areaTexto.value = "Necesita escribir un comentario";
+	$.ajax({ url: '/pekes-tote/php/crud_evento.php',
+		data: {crud_action: 'changeStatus', idEvento:text,stat:3},
+	 	type: 'post',
+	 	success: function(html){
+				window.location.reload(); 		
+			},
+			error:function(html){
+				console.log('damn...'+html);
 			}
-			break;
-		case 2: areaTexto= document.getElementById("textarea");
-			if(areaTexto.length == 0 || /^\s+$/.test(areaTexto)){
-				document.formrechazar2.submit();
-				actualizar(opc);	
-			} 
-			else{
-				areaTexto.value = "Necesita escribir un comentario";
-			}
-			break;
-		case 3: areaTexto= document.getElementById("textarea");
-			if(areaTexto.length == 0 || /^\s+$/.test(areaTexto)){
-				document.formrechazar3.submit();
-				actualizar(opc);	
-			} 
-			else{
-				areaTexto.value = "Necesita escribir un comentario";
-			}
-			break;
-				
-				
-		
-	}
-}*/
+		});
+}
 
-function admModificar(opc){
-	window.open("edita.php","_self");
+
+function admModificar(element){
+	var este=$(element);
+	text=este.parents('.info').attr('id').substring('4');
+
+	var form = document.createElement("form");
+    form.setAttribute("method", 'post');
+    form.setAttribute("action", 'edita.php');
+    var hiddenField = document.createElement("input");
+    hiddenField.setAttribute("type", "hidden");
+    hiddenField.setAttribute("name", 'idEventoToUpdate');
+    hiddenField.setAttribute("value",text);
+    form.appendChild(hiddenField);
+    document.body.appendChild(form);
+    form.submit();
 }

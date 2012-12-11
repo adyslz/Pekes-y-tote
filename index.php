@@ -21,7 +21,7 @@
     	 $eventList=$eventList.'
 			<li class="piccontainer">
 	         	<img src="'.$img.'" title="'.$dato['nombre'].'" alt="alt" />           
-	          <div class="slider-description">
+	          <div class="slider-description" onClick="window.location.href = \'detalle.php?id='.$dato['id'].' \'">
 	            <h4>'.$dato['nombre'].'</h4>
 	            <p>'.$dato['descripcion'].'
 	       

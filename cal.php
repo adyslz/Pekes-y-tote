@@ -34,7 +34,8 @@
 	    		id:'.$dato['id'].',
 	    		title:\''.$dato['nombre'].'\',
 	    		start: new Date('.$time['year'].','.$mes.','.$time['mday'].'),
-	    		allDay:true
+	    		allDay:true,
+	    		url:"detalle.php?id='.$dato['id'].'"
 	    	}';
     }
 
