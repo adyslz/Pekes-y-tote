@@ -4,7 +4,7 @@
         $_SESSION['referer'] = $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
         if(!isset($_SESSION['access_token']))
         {
-            header("location: /pekes-tote/secciones/login.php?authenticate=1");
+            header("location: /pekes-tote/accesoDenegado.php");
         }
 
         $query="select Evento.id,Evento.coment_admin,Evento.nombre,Evento.descripcion,Evento.estado from Evento where Evento.usuario=".$_SESSION["usuario"]["id"];

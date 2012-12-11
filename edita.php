@@ -4,7 +4,7 @@
 
 		if(!isset($_SESSION['access_token']))
 		{
-			header("location: /pekes-tote/secciones/login.php?authenticate=1");
+			header("location: /pekes-tote/accesoDenegado.php");
 		}
 		
 		$id=0;

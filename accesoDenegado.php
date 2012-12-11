@@ -1,65 +1,3 @@
-<?php
-	require_once("php/crud_usuario.php");
-	session_start();
-	$_SESSION['referer'] = $_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
-    if(!isset($_SESSION['access_token']))
-    {
-        header("location: /pekes-tote/accesoDenegado.php");
-    }
-    $query="SELECT 
-    		Evento.id, 
-    		Evento.nombre, 
-    		Evento.descripcion, 
-    		Evento.imagen, 
-    		Evento.precio, 
-    		Evento.fecha_evento, 
-    		Evento.fecha_creacion, 
-    		Evento.categoria, 
-    		Evento.capacidad,
-    		Usuario.nickname,
-    		Usuario.id AS userid ,
-    		Categoria.descripcion AS categoria
-		FROM Evento
-		LEFT JOIN Categoria ON Evento.categoria = Categoria.id
-		LEFT JOIN Usuario ON Evento.usuario = Usuario.id
-		WHERE Evento.estado =1";
-
-    $datos=select($query);
-    
-
-    $listEvent="";
-    $listButton="";
-    $listEventLong="";
-    foreach($datos as $dato)
-    {
-    	$listEvent=$listEvent.PHP_EOL.'
-    	<li id="ls'.$dato['id'].'">'.$dato['nombre'].'
-    	<button type="button" id="btn'.$dato['id'].'" name="'.$dato['id'].'" onclick="eventoEleg(this)"> Ver evento </button></a></li>
-    	';
-    	$img = 'http://alanturing.cucei.udg.mx/pekes-tote/data/img/'.$dato['userid'].'/'.$dato['nombre']."/". end(split('/',$dato['imagen']));
-    	$listEventLong=$listEventLong.PHP_EOL.'
-		<div id="info'.$dato['id'].'" class="info" style="display: none; clear: both;">
-			<br /><h3>'.$dato['fecha_evento'].': '.$dato['nombre'].'</h3><br />
-            		<img src="'.$img.'" alt="" width="200" height="200"><br /><br />
-            		<p>'.$dato['descripcion'].'</p>
-						<p><label class="ref">Cuando: </label>'.$dato['fecha_evento'].'
-						<label class="ref">Precio: </label>'.$dato['precio'].'<label class="ref"> Capacidad: </label>'.$dato['capacidad'].'<label class="ref"> Categoria: 
-						"'.$dato['categoria'].'"</a> Publicado el '.$dato['fecha_creacion'].' por:'.$dato['nickname'].' </label>
-         			</p>
-         		<div>
-         			<button type="button" onclick="aprobado(this)">Aprobar</button>
-         			<button type="button" onclick="rechazado(this)">Rechazar</button>
-         			<button type="button" onclick="admModificar(this)">Modificar</button>
-         		</div>
-         	</div>    	';
-
-
-    }
-
-    		
-
-	
-?>
 <!DOCTYPE html>
 <html class="no-js">
 <head>
@@ -140,8 +78,9 @@
 	<header>
       <div class="wrapper cf">
 				
+					
 				<div id="logo">
-					<a href="aprobEvento.php"><h1>Edición de Evento</h1></a>
+					<a href="accesoDenegado.php"><h1>Acceso Denegado</h1></a>
 				</div>
 				<?php
                 	include("secciones/navegacion.html");
@@ -155,23 +94,17 @@
 	   	<div id="page-content" class="cf">        		
 		     	<!-- entry-content -->	
 		     	<div class="entry-content cf">	
-    				<h2>Eventos</h2>
-    				<ul class="listEvent"><a id="inicio"></a>
-        				<?php echo $listEvent;?>
-    				</ul>
-    				<?php echo $listEventLong;?>
-        </div>		
-        				</div>
-				    </div>
-				    <!-- ENDS entry content -->
-	    		</div>
+    				<h2>Debes registrarte y tener privilegios para ver esta página</h2>
+				</div>
+				<!-- ENDS entry content -->
+	    	</div>
 	    		<!-- ENDS page content-->
-			</div><!-- ENDS WRAPPER -->
-		</div>
-		<!-- ENDS MAIN -->
-    	<?php
-        	include("secciones/footer.html");
-        ?>
+		</div><!-- ENDS WRAPPER -->
+	</div>
+	<!-- ENDS MAIN -->
+   <?php
+     	include("secciones/footer.html");
+   ?>
 		
 </body>
 </html>

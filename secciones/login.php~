@@ -42,7 +42,7 @@ function outputError($tmhOAuth) {
 }
 
 // reset request?
-if ( isset($_REQUEST['wipe'])) {
+if ( isset($_REQUEST['wipe'])) {/*
   unset($_SESSION['access_token']);
   $_SESSION = array();
   if (ini_get("session.use_cookies")) {
@@ -54,14 +54,15 @@ if ( isset($_REQUEST['wipe'])) {
     setcookie("auth_token_session","",time()-10);
   }
   session_destroy();
-		
-/*	//Limpio la sesion  esto lo agrego adys
+	*/
+	
+	//Limpio la sesion  esto lo agrego adys
 	session_unset();  //esto lo agrego adys
 	//Destruyo la sesion  esto lo agrego adys
 	session_destroy();   //esto lo agrego adys
 	//Destruyo la cookie  esto lo agrego adys
 	setcookie(session_name(), '', time()-3600);  //esto lo agrego adys
-*/
+
   header("location: /pekes-tote/index.php");
 
 // already got some credentials stored?
