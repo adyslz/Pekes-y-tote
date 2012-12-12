@@ -246,7 +246,7 @@ function validaFormulario(){
 		}
 	else{
 		document.getElementById("errorName").style.display = "none";
-		if(!/([a-zA-z])\w*/.test(document.getElementById("name").value)){//si ya escribio algo pero es un error
+		if((!/^[A-Z0-9 a-z]*$/.test(document.getElementById("name").value))&&(document.getElementById("name").value[0]!=" ")){//si ya escribio algo pero es un error
 			document.getElementById("errorName").style.display = "inline";
 			bandera[0]=0;
 			}
@@ -341,8 +341,12 @@ function validaFormulario(){
 		document.getElementById("errFecha").style.display ="inline";
 		bandera[7]=0;
 		}
-	else{//si no esta vacia debe evaluar que la fecha sea posterior a la actual
-		document.getElementById("errFecha").style.display ="none";
+	else{//si no esta vacia debe evaluar que la fecha sea posterior a la actual y que tenga un formato correcto
+		//document.getElementById("errFecha").style.display ="none";
+		//tiene que validar formato correcto
+		if(!/^[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9][0-9][0-9]$/.test(document.getElementById("date").value))
+			document.getElementById("errFecha").style.display ="inline";
+		else{
 		var temp=document.getElementById("date").value;
 		var temp2=temp.split("/");
 		if(temp2[2]==anio){//si es este año debe evaluar fechas posteriores
@@ -372,6 +376,7 @@ function validaFormulario(){
 				}
 			}
 		}
+		}//else
 		var camposCorrectos=1;
 		//si todo fue correcto hará un submit
 		for(var i=0; i<bandera.length;i++){

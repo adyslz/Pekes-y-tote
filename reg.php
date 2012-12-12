@@ -207,7 +207,7 @@
 				</script>
 
         <div class="error" id="errFecha">
-        	La fecha debe ser posterior a la actual
+        	La fecha debe ser posterior a la actual y tener un formato correcto dd/mm/aaaa
         </div>
         </p>
         <input id="fecCre" type="hidden" name="fecCre"/>
