@@ -13,7 +13,7 @@
 			$id=1;
 		}else{
 			$id=$_REQUEST['idEventoToUpdate'];
-			echo $id;
+			//echo $id;
 		}
 ?>
 
@@ -256,7 +256,7 @@ jQuery(function($){
                   <p>
 							<label for="opcionesCat">Categoria</label><br />
         					<select id="opcionesCat" name="opcCat" disabled title="Campo inhabilitado, no lo puedes modificar" class="form-poshytip">
-        						<option selected value="0">Elige una categoria</option>
+        						<!--<option selected value="0">Elige una categoria</option>-->
             				<option value="1">Curso/Taller</option>
             				<option value="2">Conferencia</option>
             				<option value="3">Convivencia</option>
