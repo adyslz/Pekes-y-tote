@@ -17,10 +17,10 @@
  	foreach($datos as $dato)
     {
     	$img = 'http://alanturing.cucei.udg.mx/pekes-tote/data/img/'.$dato['userid'].'/'.$dato['nombre']."/". end(split('/',$dato['imagen']));
-
+		
     	 $eventList=$eventList.'
 			<li class="piccontainer">
-	         	<img src="'.$img.'" title="'.$dato['nombre'].'" alt="alt" />           
+	         	<img src="'.$img.'" title="'.$dato['nombre'].'" alt="alt" width="100%" height="100%"/>           
 	          <div class="slider-description" onClick="window.location.href = \'detalle.php?id='.$dato['id'].' \'">
 	            <h4>'.$dato['nombre'].'</h4>
 	            <p>'.$dato['descripcion'].'
