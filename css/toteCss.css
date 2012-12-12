@@ -3,11 +3,11 @@
 
 .containerBox{
 	top: 25%;
-	left: 57%;
+	margin: 0 auto;
 	overflow: hidden;
 	width:850px;
 	margin-top: 50px;
-	margin-left: 250px;
+	position: relative;
 }
 .box2
 {
