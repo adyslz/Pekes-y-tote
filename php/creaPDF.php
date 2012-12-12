@@ -25,7 +25,7 @@
 	$i=50;
 	
 	foreach($datos as $dato){
-		$pdf -> Cell(0,10,"Nombre: ".$dato['nombre'],1,2,'L');
+		$pdf -> Cell(0,10,"Nombre: ".utf8_decode($dato['nombre']),1,2,'L');
 		$pdf -> SetFont('Arial','',14);
 
 		$str=$dato['descripcion'];	
@@ -34,8 +34,8 @@
 		$str= str_replace("</div>"," ", $str);
 		$str= str_replace("<br>"," ", $str);
 		if(strlen($str)>70) {
-			$str1=substr($str,0,70);
-			$str2=substr($str,71);
+			$str1=utf8_decode(substr($str,0,70));
+			$str2=utf8_decode(substr($str,71));
 			$pdf -> Cell(80,10,"Descripcion: ".$str1,0,2,'L');   
 			$pdf -> Cell(80,10,$str2,0,2,'L');   
 		}
