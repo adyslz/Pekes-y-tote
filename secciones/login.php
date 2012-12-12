@@ -55,13 +55,13 @@ if ( isset($_REQUEST['wipe'])) {
   }
   session_destroy();
 		
-/*	//Limpio la sesion  esto lo agrego adys
-	session_unset();  //esto lo agrego adys
-	//Destruyo la sesion  esto lo agrego adys
-	session_destroy();   //esto lo agrego adys
-	//Destruyo la cookie  esto lo agrego adys
-	setcookie(session_name(), '', time()-3600);  //esto lo agrego adys
-*/
+	//Limpio la sesion 
+	session_unset();  
+	//Destruyo la sesion  
+	session_destroy();   
+	//Destruyo la cookie  
+	setcookie(session_name(), '', time()-4200); 
+
   header("location: /pekes-tote/index.php");
 
 // already got some credentials stored?

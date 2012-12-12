@@ -94,7 +94,9 @@
 	   	<div id="page-content" class="cf">        		
 		     	<!-- entry-content -->	
 		     	<div class="entry-content cf">	
-    				<h2>Debes registrarte y tener privilegios para ver esta página</h2>
+    				<h2>Debes registrarte y tener privilegios para ver esta página</h2><br />
+
+				<a href="secciones/login.php?authenticate=1&force=1"><img src="img/social/login.png"/></a>
 				</div>
 				<!-- ENDS entry content -->
 	    	</div>
