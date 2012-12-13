@@ -8,39 +8,43 @@
 
 
 	session_start();
-	$referer=$_SESSION['referer'];
-	$action=$_REQUEST["crud_action"];
-	//error_log("aasfd");
-	switch($action){
-		case "create":
-			if(in_array($referer, $create_permited)){
-				create();
-			}
-		break;
-		case "eventosXañoXmes":
-			 agnoXmes();
-		break;
-		case "read":
-			$x=read($_REQUEST['idEvento']);
-			header('Content-Type: application/json');
-			echo json_encode($x);
-		break;
-		case "modify":
-			if(in_array($referer, $modify_permited)){
-				modify();
-			}
-		break;
-		case "delete":
-			if(in_array($referer, $delete_permited)){
-				delete($_REQUEST['idEvento']);
-			}
-		break;
-		case "changeStatus":
-			if(in_array($referer, $changeStatus_permited)){
-				changeStatus($_REQUEST['idEvento']);
-			}
-		break;
-		
+	if(!isset($_SESSION['referer'])||$_REQUEST["crud_action"]){
+		$referer=$_SESSION['referer'];
+		$action=$_REQUEST["crud_action"];
+		switch($action){
+			case "create":
+				if(in_array($referer, $create_permited)){
+					create();
+				}
+			break;
+			case "eventosXañoXmes":
+				 agnoXmes();
+			break;
+			case "read":
+				$x=read($_REQUEST['idEvento']);
+				header('Content-Type: application/json');
+				echo json_encode($x);
+			break;
+			case "modify":
+				if(in_array($referer, $modify_permited)){
+					modify();
+				}
+			break;
+			case "delete":
+				if(in_array($referer, $delete_permited)){
+					delete($_REQUEST['idEvento']);
+				}
+			break;
+			case "changeStatus":
+				if(in_array($referer, $changeStatus_permited)){
+					changeStatus($_REQUEST['idEvento']);
+				}
+			break;
+			default:
+				die("no permitido");
+		}
+	}else{
+		header("Location: ../index.php");
 	}
 
 	function imagen($name,$usuarioId){
@@ -164,6 +168,7 @@
 
 	function read($id){
 		$conexion=conexion();
+		$id=addslashes($id);
 		$query="SELECT 
     		Evento.id, 
     		Evento.nombre, 
