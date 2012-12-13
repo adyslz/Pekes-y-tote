@@ -58,8 +58,6 @@
              <div id="idEvento'.$dato['id'].'" class="evento '.$class.'">
                 <a href="detalle.php?id='.$dato['id'].'"><h3>'.$dato['id'].'-'.$dato['nombre'].'</h3></a>
                 <img src="img/down-circle.png" alt="Mas" title="Mas" onClick="switchImg(this)"/>
-                <img src="img/editar.png" alt="Editar" title="Editar" onClick="editar(this)"/>
-                <img src="img/borrar.png" alt="Borrar" title="Borrar" onClick="borrar(this)"/>
                 <div class="desc"><p>'.$dato['descripcion'].'</p></div>
             </div>';
         }
@@ -182,22 +180,28 @@
     <article>
         <div class="containerBox">
             <div class="box1">
-                <h1>Eventos Pendientes   <a href="php/creaPDF.php" target="_blank"><img src="img/pdf.jpg"/ width="35px" height="35px"></a>
-                <a href="php/creaXLS.php" target="_blank"><img src="img/xls.jpg"/ width="35px" height="35px"></a> </h1>
+                <h1>Eventos Pendientes</h1>   
+                <h1><a href="php/creaPDF.php" target="_blank"><img src="img/pdf.jpg"/ width="35px" height="35px"></a>
+                <a href="php/creaXLS.php" target="_blank"><img src="img/xls.jpg"/ width="35px" height="35px"></a> <a href="php/creaRSS.php"
+                target="_blank"><img src="img/rss.jpg" width="35px" height="35px"/></a></h1>
                 <div class="eventos">
                     <?php echo $pendientesStr;?>
                 </div>
             </div>
    	        <div class="box2">
-                <h1>Eventos Rechazados   <a href="php/creaPDF.php" target="_blank"><img src="img/pdf.jpg"/ width="35px" height="35px"></a> 
-                <a href="php/creaXLS.php" target="_blank"><img src="img/xls.jpg"/ width="35px" height="35px"></a> </h1>
+                <h1>Eventos Rechazados</h1>
+                <h1><a href="php/creaPDF.php" target="_blank"><img src="img/pdf.jpg"/ width="35px" height="35px"></a> 
+                <a href="php/creaXLS.php" target="_blank"><img src="img/xls.jpg"/ width="35px" height="35px"></a>
+                <a href="php/creaRSS.php" target="_blank"><img src="img/rss.jpg" width="35px" height="35px"/></a> </h1>
                 <div class="eventos">
                     <?php echo $rechazadosStr;?>
                 </div>
             </div>	
             <div class="box3">
-                <h1>Eventos Aceptados   <a href="php/creaPDF.php" target="_blank"><img src="img/pdf.jpg"/ width="35px" height="35px"></a> 
-                <a href="php/creaXLS.php" target="_blank"><img src="img/xls.jpg"/ width="35px" height="35px"></a> </h1>
+                <h1>Eventos Aceptados</h1>   
+                <h1><a href="php/creaPDF.php" target="_blank"><img src="img/pdf.jpg"/ width="35px" height="35px"></a> 
+                <a href="php/creaXLS.php" target="_blank"><img src="img/xls.jpg"/ width="35px" height="35px"></a> 
+                <a href="php/creaRSS.php" target="_blank"><img src="img/rss.jpg" width="35px" height="35px"/></a> </h1>
                     <div class="eventos">
                         <?php echo $aprobadosStr;?>
                     </div>

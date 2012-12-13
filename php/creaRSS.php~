@@ -43,7 +43,7 @@ echo "<copyright>PekesyTote</copyright>\n";
 foreach($datos as $dato)
 {
 	//elimino caracteres extraños en campos susceptibles de tenerlos
-	$titulo=utf8_decode(clrAll($dato['nombre']));			
+	$titulo=clrAll($dato['nombre']);			
 	$desc=utf8_decode(clrAll($dato['descripcion']));
 
 	echo "<item>\n";
