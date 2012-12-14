@@ -158,12 +158,22 @@
 						</p>
                         
                         <p> 
-        <label class="regLab" for="precio">Precio</label>
-        <input type="text" id="precio" name="precio" required pattern="(([0-9])*.([0-9])*)">
-        <div class="error" id="errPrecio">
-        	El formato es invalido ingresa un formato: 00.00 por ejemplo
+           <label class="regLab" for="capacidad">Precio</label>
+        <input type="radio" name="precio" value="Sin costo" id="sincosto" onClick="hab3()"/>Sin costo<br /><br />
+       	<input type="radio" name="precio" value="Costo" id="costo" onClick="hab3()" />Costo
+        <input type="text" id="prec" name="precio" disabled="disabled"/>
+       
+        <div class="error" id="errPre">
+ 			Selecciona si es Con costo o Sin costo       
         </div>
-        			</p>
+        <div class="error" id="errPre2">
+        	Ingresa el costo
+        </div>
+        <div class="error" id="errPre3">
+        	El costo es invalido por favor ingresa un costo con el formato 11.11 
+        </div>
+        </p>
+        <p>
         <p>
         <label class="regLab" for="capacidad">Capacidad</label>
         <input type="radio" name="capacidad" value="ilimitada" id="ilimitada" onClick="hab()"/>Ilimitada<br /><br />

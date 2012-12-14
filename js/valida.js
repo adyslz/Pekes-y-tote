@@ -23,6 +23,32 @@ function hab2(){
 		document.getElementById("errCap").style.display ="none";
 		}
 	}
+	
+function hab3(){
+	if(document.getElementById("costo").checked){
+		document.getElementById("prec").disabled ="";
+		document.getElementById("errPre2").style.display ="inline";
+		}
+	else{  
+		document.getElementById("prec").disabled ="disable";
+		document.getElementById("prec").value ="";
+		document.getElementById("errPre2").style.display ="none";
+		document.getElementById("errPre").style.display ="none";
+		}
+	}
+	
+function hab4(){
+	if(document.contactForm.precio[1].checked){
+		document.getElementById("prec").disabled ="";
+		document.getElementById("errPre2").style.display ="inline";
+		}
+	else{
+		document.getElementById("prec").disabled ="disable";
+		document.getElementById("prec").value ="";
+		document.getElementById("errPre2").style.display ="none";
+		document.getElementById("errPre").style.display ="none";
+		}
+	}
 function date (format, timestamp) {
 
     var that = this,
@@ -274,7 +300,9 @@ function validaFormulario(){
 		bandera[2]=1;
 		$('#comments').val(textoAValidar);
 		}	
-	if(document.getElementById("precio").value==''){
+		
+	//validacion de precio
+	/*if(document.getElementById("precio").value==''){
 		document.getElementById("errPrecio").style.display = "inline";
 		bandera[3]=0;
 		}
@@ -294,6 +322,43 @@ function validaFormulario(){
 				bandera[3]=1;
 		}
 		}
+		
+		*/
+	//nueva validacion de precio
+		if((!document.getElementById("sincosto").checked)&&(!document.getElementById("costo").checked)){
+		document.getElementById("errPre").style.display ="inline";
+		bandera[3]=0;
+		document.getElementById("errPre3").style.display ="none";
+		}
+	else{
+		if(document.getElementById("sincosto").checked){//si esta selecionado el sin costo desabilita el input de costo
+			document.getElementById("prec").disabled ="disable";//desbilita
+			document.getElementById("prec").value ="";
+			document.getElementById("errPre2").style.display ="none";//quita el cuadro de error
+			bandera[3]=1;
+			}
+		else{//si no esta seleccionado sin costo (esta seleccionado con costo)
+			if(document.getElementById("prec").value==''){//evalua que no este vacio el input de cantidad
+				document.getElementById("errPre3").style.display ="inline";//muestra errror
+				bandera[8]=0;
+			}
+			else{//no esta vacio
+				document.getElementById("errPre3").style.display ="none";//oculta el error
+				if(!/^([0-9])*[.]?[0-9]*$/.test(document.getElementById("prec").value)){//evalua que el cosoto sea valido
+					document.getElementById("errPre3").style.display ="inline";
+					bandera[8]=0;
+					}//no es valida muestra el error
+				else{//si fue valida quita el error y nos hace la bandera positiva
+					document.getElementById("errPre3").style.display ="none";
+					bandera[8]=1;
+				}
+				}//else 
+			}//else principal
+		document.getElementById("errPre").style.display ="none";
+		document.getElementById("errPre2").style.display ="none";
+		}
+	
+		
 	//validar que capacidad este seleccionada
 	if((!document.getElementById("ilimitada").checked)&&(!document.getElementById("limitada").checked)){
 		document.getElementById("errCap").style.display ="inline";
@@ -313,7 +378,7 @@ function validaFormulario(){
 				bandera[5]=0;
 			}
 			else{//no esta vacio
-				document.getElementById("errCap3").style.direction ="none";//oculta el error
+				document.getElementById("errCap3").style.display ="none";//oculta el error
 				if(!/([0-9]){2,4}/.test(document.getElementById("cap").value)){//evalua que sea valida la cantidad
 					document.getElementById("errCap3").style.display ="inline";
 					bandera[5]=0;
@@ -327,6 +392,9 @@ function validaFormulario(){
 		document.getElementById("errCap").style.display ="none";
 		document.getElementById("errCap2").style.display ="none";
 		}
+		
+		
+		
 	//validar que seleccione una categoria
 	if(document.getElementById("opcionesCat").selectedIndex==0){
 		document.getElementById("errCatego").style.display ="inline";
