@@ -342,11 +342,12 @@ function validaFormulario(){
 		bandera[7]=0;
 		}
 	else{//si no esta vacia debe evaluar que la fecha sea posterior a la actual y que tenga un formato correcto
-		//document.getElementById("errFecha").style.display ="none";
+		document.getElementById("errFecha").style.display ="none";
 		//tiene que validar formato correcto
-		if(!/^[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9][0-9][0-9]$/.test(document.getElementById("date").value))
+		if(!/^[0-9][0-9] \/ [0-9][0-9] \/ [0-9][0-9][0-9][0-9]$/.test(document.getElementById("date").value))
 			document.getElementById("errFecha").style.display ="inline";
 		else{
+			document.getElementById("errFecha").style.display ="none";
 		var temp=document.getElementById("date").value;
 		var temp2=temp.split("/");
 		if(temp2[2]==anio){//si es este año debe evaluar fechas posteriores
