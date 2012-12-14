@@ -165,8 +165,8 @@
 		
 		<!-- MAIN -->
 		<div id="main">
-			<div class="data" style="width:850px;padding-left:70px;">
-        		<div id='calendar'></div>
+			<div class="data" style="width:850px;margin: 0 auto;	position: relative;text-align: center;">
+        		<div id='calendar' style="margin: 0 auto;	position: relative;text-align: left;"></div>
         	</div>
             <div style="padding:45px;"> </div> 
 		</div>
