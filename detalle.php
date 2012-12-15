@@ -149,8 +149,6 @@
 				</div>
 			";
 				}
-										
-										
 		?>
 
 		</header>
@@ -174,7 +172,7 @@
 
 						<div id="imagen-evento" class="cf">
 							<h4>Imágen del Evento</h4><br />
-							<img id ="imagen" src="" alt="imagenEvento" width="500px" />
+							<img id ="imagen" src="" alt="imagenEvento" />
 						</div>	
 
 						<div id="precio-evento" class="cf">
